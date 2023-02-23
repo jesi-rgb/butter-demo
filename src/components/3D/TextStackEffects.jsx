@@ -23,26 +23,6 @@ export default function TextStackEffects({ effect }) {
   let [metal, setMetal] = useState(true);
   let [mirror, setMirror] = useState(false);
 
-  const draggableEffects = {
-    Texture: () => {
-      setTexture(true);
-      setMetal(false);
-      setMirror(false);
-    },
-    Motion: () => {
-      setMotion(true);
-    },
-    Glass: () => {
-      setMirror(true);
-      setMetal(false);
-    },
-    Metal: () => {
-      setMetal(true);
-      setTexture(false);
-      setMirror(false);
-    },
-  };
-
   let textOptions = {
     height: 0.3,
     bevelEnabled: true,
@@ -82,15 +62,13 @@ export default function TextStackEffects({ effect }) {
   });
 
   const isSelected = !!selected.find((sel) => sel === store);
-  console.log(isSelected);
 
   return (
     <>
-      <mesh userData={{ store }}>
+      <mesh ref={mesh} userData={{ store }}>
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
-              ref={mesh}
               curveSegments={10}
               font={"/fonts/" + textControls.font + ".json"}
               {...textOptions}

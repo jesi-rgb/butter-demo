@@ -1,12 +1,9 @@
-import { Select, useSelect } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Draggable from "react-draggable";
-import { Panel } from "./MultiLeva";
 import Scene from "./Scene";
 import TextStackEffects from "./TextStackEffects";
 
 export default function Draggable3DText() {
-  const [selected, setSelected] = useState([]);
   return (
     <>
       <Draggable cancel=".no-cursor">

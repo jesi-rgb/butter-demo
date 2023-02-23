@@ -24,13 +24,12 @@ export default function Scene({ children }) {
             />
             <ambientLight intensity={20000.75} />
 
-            <Select onChange={(selectedItems) => setSelected(selectedItems)}>
-              {children}
-            </Select>
+            <Select onChange={setSelected}>{children}</Select>
 
             <Preload all />
             <OrbitControls
               enableZoom={false}
+              dampingFactor={0.3}
               //   enableRotate={false}
               enablePan={false}
             />
