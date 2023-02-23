@@ -1,16 +1,15 @@
 import { Canvas } from "@react-three/fiber";
-import { Loader, OrbitControls, Preload } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import { Loader, OrbitControls, Preload, Select } from "@react-three/drei";
+import { Suspense, useRef, useState } from "react";
+import { Panel } from "./MultiLeva";
 
 export default function Scene({ children }) {
   // Everything defined in here will persist between route changes, only children are swapped
   let ref = useRef();
+  const [selected, setSelected] = useState([]);
   return (
     <>
-      <div
-        ref={ref}
-        className="border-2 pointer-events-none cursor-move no-cursor"
-      >
+      <div ref={ref} className="border-2 cursor-move no-cursor">
         <Canvas
           orthographic
           camera={{
@@ -25,7 +24,9 @@ export default function Scene({ children }) {
             />
             <ambientLight intensity={20000.75} />
 
-            {children}
+            <Select onChange={(selectedItems) => setSelected(selectedItems)}>
+              {children}
+            </Select>
 
             <Preload all />
             <OrbitControls
@@ -35,6 +36,7 @@ export default function Scene({ children }) {
             />
           </Suspense>
         </Canvas>
+        <Panel selected={selected} />
         <Loader
           initialState={(active) => active}
           dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`}

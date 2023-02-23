@@ -1,12 +1,7 @@
 import Head from "next/head";
-import { Oswald } from "@next/font/google";
 import AssetLibrary from "@/components/AssetLibrary";
 import EffectSideBar from "@/components/EffectSideBar";
-import Scene from "@/components/3D/Scene";
-import TextStackEffects from "@/components/3D/TextStackEffects";
-import Draggable from "react-draggable";
-
-const rubik = Oswald({ subsets: ["latin"] });
+import Draggable3DText from "@/components/3D/Draggable3DText";
 
 export default function Home() {
   return (
@@ -21,13 +16,7 @@ export default function Home() {
       <main className="h-screen flex flex-row">
         <AssetLibrary />
         <div className="text-center w-2/4 col-span-2 my-auto font-bold text-2xl">
-          <Draggable cancel=".no-cursor">
-            <div className="w-min p-3 border-2 border-red-300 cursor-pointer">
-              <Scene>
-                <TextStackEffects />
-              </Scene>
-            </div>
-          </Draggable>
+          <Draggable3DText />
         </div>
         <EffectSideBar />
       </main>

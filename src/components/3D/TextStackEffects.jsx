@@ -8,19 +8,20 @@ import {
   Float,
   useVideoTexture,
   useCursor,
+  useSelect,
+  Edges,
 } from "@react-three/drei";
-import { button, useControls } from "leva";
-import { useEffect, useRef, useState } from "react";
+import { button } from "leva";
+import { useControls } from "./MultiLeva";
+import { useRef, useState } from "react";
 
 export default function TextStackEffects({ effect }) {
+  const selected = useSelect().map((sel) => sel.userData.store);
   const mesh = useRef(null);
-
-  const [hovered, setHover] = useState(false);
 
   let [motion, setMotion] = useState(false);
   let [metal, setMetal] = useState(true);
   let [mirror, setMirror] = useState(false);
-  let [enableBg, setEnableBg] = useState(true);
 
   const draggableEffects = {
     Texture: () => {
@@ -49,7 +50,7 @@ export default function TextStackEffects({ effect }) {
     bevelThickness: Math.abs(0.05 * 1.4),
     bevelSegments: 70,
   };
-  const textControls = useControls({
+  const [store, textControls] = useControls(selected, {
     text: { value: "butter" },
     font: {
       options: {
@@ -62,14 +63,14 @@ export default function TextStackEffects({ effect }) {
       },
       value: "abril-fatface",
     },
-    color: { value: "#837600" },
-  });
 
-  const controls = useControls("Text", {
+    color: { value: "#837600" },
+
     Glass: button((get) => {
       setMirror((mirror) => !mirror);
       setMetal(false);
     }),
+
     Metal: button((get) => {
       setMetal((metal) => !metal);
       setMirror(false);
@@ -80,19 +81,16 @@ export default function TextStackEffects({ effect }) {
     "Base shape": button((get) => {}, { disabled: true }),
   });
 
-  useCursor(hovered, "pointer");
+  const isSelected = !!selected.find((sel) => sel === store);
+  console.log(isSelected);
 
   return (
     <>
-      <mesh>
+      <mesh userData={{ store }}>
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
               ref={mesh}
-              onPointerOut={(e) => setHover(false)}
-              onPointerOver={(e) => {
-                setHover(true);
-              }}
               curveSegments={10}
               font={"/fonts/" + textControls.font + ".json"}
               {...textOptions}
@@ -118,6 +116,9 @@ export default function TextStackEffects({ effect }) {
                 />
               )}
             </Text3D>
+            <Edges visible={isSelected} scale={1.1} renderOrder={1000}>
+              <meshBasicMaterial transparent color="#333" depthTest={false} />
+            </Edges>
           </Center>
         </Float>
       </mesh>
