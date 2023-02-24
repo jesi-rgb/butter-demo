@@ -2,23 +2,22 @@ import Image from "next/image";
 import { useState } from "react";
 import Draggable from "react-draggable";
 
-export default function ImageItem({ props }) {
+export default function ImageItem({ imgData, dropPosition }) {
   const [cursor, setCursor] = useState("grab");
 
   return (
     <Draggable
       bounds="parent"
-      grid={[gridSpacing, gridSpacing]}
       onStart={() => setCursor("grabbing")}
       onStop={() => setCursor("grab")}
-      defaultPosition={props.dropPosition}
+      defaultPosition={dropPosition}
     >
-      <div style={{ cursor: cursor }} className="w-fit h-fit">
+      <div style={{ cursor: cursor }} className="w-min h-fit">
         <Image
           decoding="sync"
           width={200}
           height={200}
-          src={props.imgData}
+          src={imgData}
           alt=""
           draggable={false}
         />
