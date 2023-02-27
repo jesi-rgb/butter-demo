@@ -12,27 +12,35 @@ export default function ButterCanvas({}) {
 
     e.target.style = "background-color: none";
 
-    let file = e.dataTransfer?.files[0];
-    let reader = new FileReader();
+    // means we are importing an image
+    if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+      let file = e.dataTransfer?.files[0];
+      let reader = new FileReader();
 
-    reader.onload = function (reader) {
-      const result = reader.target?.result;
-      const dropPosition = {
-        x: e.clientX,
-        y: e.clientY,
+      reader.onload = function (reader) {
+        const result = reader.target?.result;
+        const dropPosition = {
+          x: e.clientX,
+          y: e.clientY,
+        };
+        setItemsArray([
+          ...itemsArray,
+          <ImageItem
+            dropPosition={dropPosition}
+            imgData={result}
+            key={itemsArray.length}
+          />,
+        ]);
+        console.log(itemsArray);
       };
+
+      if (file) reader.readAsDataURL(file);
+    } else {
       setItemsArray([
         ...itemsArray,
-        <ImageItem
-          dropPosition={dropPosition}
-          imgData={result}
-          key={itemsArray.length}
-        />,
+        <Draggable3DText key={itemsArray.length} />,
       ]);
-      console.log(itemsArray);
-    };
-
-    if (file) reader.readAsDataURL(file);
+    }
 
     hideWrapper();
   }
@@ -73,7 +81,7 @@ export default function ButterCanvas({}) {
           style={{ fontFamily: "cursive" }}
           className="drop-label absolute left-1/2 pointer-events-none text-gray-600 text-center text-7xl my-32"
         >
-          drop here
+          drop here~
         </div>
         {itemsArray.map((i) => i)}
       </section>
