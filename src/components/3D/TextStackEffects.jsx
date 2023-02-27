@@ -30,7 +30,7 @@ export default function TextStackEffects({ effect }) {
     bevelThickness: Math.abs(0.05 * 1.4),
     bevelSegments: 70,
   };
-  const [store, textControls] = useControls(selected, {
+  let [store, textControls] = useControls(selected, {
     text: { value: "butter" },
     font: {
       options: {
@@ -65,10 +65,11 @@ export default function TextStackEffects({ effect }) {
 
   return (
     <>
-      <mesh ref={mesh} userData={{ store }}>
+      <mesh ref={mesh} onClick={() => (textControls.text = "damn")}>
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
+              userData={{ store }}
               curveSegments={10}
               font={"/fonts/" + textControls.font + ".json"}
               {...textOptions}
@@ -88,9 +89,9 @@ export default function TextStackEffects({ effect }) {
               )}
               {mirror && (
                 <MeshTransmissionMaterial
-                  samples={2}
-                  thickness={5}
-                  chromaticAberration={0.5}
+                  samples={3}
+                  thickness={20}
+                  chromaticAberration={3.5}
                 />
               )}
             </Text3D>

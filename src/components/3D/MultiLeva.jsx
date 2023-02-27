@@ -5,8 +5,10 @@ import {
 } from "leva";
 
 export function Panel({ selected }) {
+  console.log(selected);
   return (
     <LevaPanel
+      position={{ x: 1000, y: 1000 }}
       store={selected[0]?.userData.store}
       titleBar={{ title: selected.map(() => "●").join(" ") }}
     />
