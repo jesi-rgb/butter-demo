@@ -19,17 +19,10 @@ export default function ImageItem({ imgData, dropPosition }) {
         width={200}
         height={200}
         handleSize={[8, 8]}
-        resizeHandles={["sw", "se", "nw", "ne", "w", "e", "n", "s"]}
       >
         <div style={{ cursor: cursor }} className="border p-2">
           <div>
-            <img
-              width={200}
-              height={200}
-              src={imgData}
-              alt=""
-              draggable={false}
-            />
+            <img src={imgData} alt="" draggable={false} />
           </div>
         </div>
       </ResizableBox>

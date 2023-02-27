@@ -1,5 +1,5 @@
 import useDnD from "@/hooks/useDnD.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Draggable3DText from "./3D/Draggable3DText";
 import ImageItem from "./ImageItem";
 
@@ -41,17 +41,7 @@ export default function ButterCanvas({}) {
         <Draggable3DText key={itemsArray.length} />,
       ]);
     }
-
     hideWrapper();
-  }
-
-  function dragOver(e) {
-    e.target.style = "background-color: #FF349033";
-    showWrapper();
-  }
-
-  function dragLeave(e) {
-    e.target.style = "background-color: white";
   }
 
   function hideWrapper() {
@@ -61,12 +51,24 @@ export default function ButterCanvas({}) {
     }
   }
 
-  function showWrapper() {
-    let element = document.querySelector(".drop-label");
-    if (element) {
-      element.style.visibility = "";
-    }
+  function dragOver(e) {
+    e.target.style = "background-color: #FF349033";
   }
+
+  function dragLeave(e) {
+    e.target.style = "background-color: white";
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      console.log(e.key);
+      if (e.key === "Backspace" || e.key === "Delete") {
+        console.log("deleting last element");
+
+        setItemsArray(itemsArray.slice(0, -1));
+      }
+    });
+  });
 
   return (
     <>

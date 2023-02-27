@@ -21,24 +21,18 @@ export default function useDnD() {
 
   useEffect(() => {
     window.addEventListener("dragenter", function (e) {
-      // drag start
-      // unhide our red overlay
       showWrapper();
       setLastTarget(e.target);
     });
 
     window.addEventListener("dragleave", function (e) {
-      // user canceled
-
       if (e.target === lastTarget || e.target === document) {
         hideWrapper();
       }
     });
 
     window.addEventListener("dragover", function (e) {
-      //to stop default browser act
       e.preventDefault();
-      //   e.stopImmediatePropagation();
     });
   });
 }
