@@ -1,6 +1,6 @@
 import { Children, useMemo, useRef, useState } from "react";
 
-export default function Asset({ children }) {
+export default function Effect({ children }) {
   const [cursor, setCursor] = useState("grab");
 
   const ref = useRef(
