@@ -18,7 +18,6 @@ function showWrapper() {
 
 export default function useDnD() {
   const [lastTarget, setLastTarget] = useState(null);
-  let [items, setItems] = useState();
 
   useEffect(() => {
     window.addEventListener("dragenter", function (e) {
@@ -39,29 +38,7 @@ export default function useDnD() {
     window.addEventListener("dragover", function (e) {
       //to stop default browser act
       e.preventDefault();
-      e.stopImmediatePropagation();
-    });
-
-    window.addEventListener("drop", function (e) {
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      hideWrapper();
-
-      let file = e.dataTransfer?.files[0];
-      let reader = new FileReader();
-
-      reader.onload = function (reader) {
-        const result = reader.target?.result;
-        const dropPosition = {
-          x: e.clientX,
-          y: e.clientY,
-        };
-        setItems({ imgData: result, dropPosition: dropPosition });
-      };
-
-      if (file) reader.readAsDataURL(file);
+      //   e.stopImmediatePropagation();
     });
   });
-
-  return items;
 }

@@ -1,7 +1,7 @@
 import Asset from "./Asset";
 
 export default function AssetLibrary() {
-  let assets = new Array(10).fill(1);
+  let assets = new Array(8).fill(1);
   return (
     <div className="w-1/4 p-5 shrink-0">
       <div className="text-xl font-bold p-3">Assets</div>

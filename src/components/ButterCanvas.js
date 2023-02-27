@@ -1,20 +1,19 @@
 import useDnD from "@/hooks/useDnD.js";
+import { useState } from "react";
 import Draggable3DText from "./3D/Draggable3DText";
+import ImageItem from "./ImageItem";
 
 export default function ButterCanvas({}) {
   useDnD();
-  let itemsArray = [<Draggable3DText key={1} />, <Draggable3DText key={2} />];
+  let [itemsArray, setItemsArray] = useState([]);
 
   function drop(e) {
     e.preventDefault();
-    console.log(e);
-    console.log(e.target);
 
     e.target.style = "background-color: none";
 
     let file = e.dataTransfer?.files[0];
     let reader = new FileReader();
-    let dropData;
 
     reader.onload = function (reader) {
       const result = reader.target?.result;
@@ -22,7 +21,15 @@ export default function ButterCanvas({}) {
         x: e.clientX,
         y: e.clientY,
       };
-      dropData = { imgData: result, dropPosition: dropPosition };
+      setItemsArray([
+        ...itemsArray,
+        <ImageItem
+          dropPosition={dropPosition}
+          imgData={result}
+          key={itemsArray.length}
+        />,
+      ]);
+      console.log(itemsArray);
     };
 
     if (file) reader.readAsDataURL(file);
@@ -60,7 +67,7 @@ export default function ButterCanvas({}) {
         onDrop={drop}
         onDragOver={dragOver}
         onDragLeave={dragLeave}
-        className="drop-target w-full border-2 border-blue-800 m-1"
+        className="drop-target relative w-full border-2 border-blue-800 m-1"
       >
         <div
           style={{ fontFamily: "cursive" }}
