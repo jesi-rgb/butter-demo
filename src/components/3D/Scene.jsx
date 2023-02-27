@@ -9,7 +9,13 @@ export default function Scene({ children }) {
   const [selected, setSelected] = useState([]);
   return (
     <>
-      <div ref={ref} className="border-2 cursor-move no-cursor">
+      <div
+        ref={ref}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") setSelected([]);
+        }}
+        className="border-2 cursor-move no-cursor"
+      >
         <Canvas
           orthographic
           camera={{
@@ -25,6 +31,7 @@ export default function Scene({ children }) {
             <ambientLight intensity={20000.75} />
 
             <Select onChange={setSelected}>{children}</Select>
+            {/* {children} */}
 
             <Preload all />
             <OrbitControls
@@ -36,10 +43,6 @@ export default function Scene({ children }) {
           </Suspense>
         </Canvas>
         <Panel selected={selected} />
-        <Loader
-          initialState={(active) => active}
-          dataInterpolation={(p) => `Loading ${p.toFixed(2)}%`}
-        />
       </div>
     </>
   );
