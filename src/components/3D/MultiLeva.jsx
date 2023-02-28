@@ -5,7 +5,6 @@ import {
 } from "leva";
 
 export function Panel({ selected }) {
-  console.log(selected);
   return (
     <LevaPanel
       store={selected[0]?.userData.store}

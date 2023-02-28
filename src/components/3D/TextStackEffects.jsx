@@ -18,14 +18,9 @@ import { useControls } from "./MultiLeva";
 import { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-export default function TextStackEffects({ effect }) {
+export default function TextStackEffects({ is3D, isMetal, isMoving }) {
   const selected = useSelect().map((sel) => sel.userData.store);
   const mesh = useRef(null);
-
-  let [motion, setMotion] = useState(false);
-  let [metal, setMetal] = useState(false);
-  let [mirror, setMirror] = useState(false);
-  let [is3D, setIs3D] = useState(false);
 
   let textOptions = {
     height: 0.0,
@@ -34,6 +29,11 @@ export default function TextStackEffects({ effect }) {
     bevelThickness: 0.0,
     bevelSegments: 70,
   };
+
+  if (is3D) {
+    textOptions.height = 0.3;
+    textOptions.bevelThickness = 0.1;
+  }
 
   const { camera, size } = useThree();
 
@@ -52,23 +52,7 @@ export default function TextStackEffects({ effect }) {
     },
 
     color: { value: "#837600" },
-
-    // Glass: button((get) => {
-    //   setMirror((mirror) => !mirror);
-    //   setMetal(false);
-    // }),
-
-    // Metal: button((get) => {
-    //   setMetal((metal) => !metal);
-    //   setMirror(false);
-    // }),
-
-    // Motion: button((get) => setMotion((motion) => !motion)),
-
-    // "Base shape": button((get) => {}, { disabled: true }),
   });
-
-  const isSelected = !!selected.find((sel) => sel === store);
 
   return (
     <>
@@ -78,10 +62,11 @@ export default function TextStackEffects({ effect }) {
           if (e.shiftKey) {
             console.log("lookin camera");
             mesh.current.quaternion.copy(camera.quaternion);
+            e.stopPropagation();
           }
         }}
       >
-        <Float speed={motion ? 3 : 0}>
+        <Float speed={isMoving ? 3 : 0}>
           <Center>
             <Text3D
               userData={{ store }}
@@ -91,7 +76,7 @@ export default function TextStackEffects({ effect }) {
             >
               {textControls.text}
 
-              {metal && (
+              {isMetal && (
                 <MeshReflectorMaterial
                   resolution={8}
                   roughness={0.01}
@@ -100,13 +85,6 @@ export default function TextStackEffects({ effect }) {
                   color={textControls.color}
                   metalness={1}
                   distortion={1}
-                />
-              )}
-              {mirror && (
-                <MeshTransmissionMaterial
-                  samples={3}
-                  thickness={20}
-                  chromaticAberration={3.5}
                 />
               )}
               <meshBasicMaterial color={textControls.color} />

@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import Draggable3DText from "./3D/Draggable3DText";
 import ImageItem from "./ImageItem";
 
-export default function ButterCanvas({}) {
+export default function ButterCanvas() {
   useDnD();
+
   let [itemsArray, setItemsArray] = useState([]);
 
   function drop(e) {
@@ -23,7 +24,6 @@ export default function ButterCanvas({}) {
           x: e.screenX,
           y: e.screenY,
         };
-        console.log(dropPosition);
         setItemsArray([
           ...itemsArray,
           <ImageItem
@@ -32,7 +32,6 @@ export default function ButterCanvas({}) {
             key={itemsArray.length}
           />,
         ]);
-        console.log(itemsArray);
       };
 
       if (file) reader.readAsDataURL(file);
@@ -62,23 +61,22 @@ export default function ButterCanvas({}) {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      console.log(e.key);
       if (e.key === "Backspace" || e.key === "Delete") {
         console.log("deleting last element");
 
         setItemsArray(itemsArray.slice(0, -1));
       }
+      e.stopPropagation();
     });
   });
 
   return (
     <>
-      <section
+      <div
         id="canvas"
         onDrop={drop}
         onDragOver={dragOver}
         onDragLeave={dragLeave}
-        onClick={(e) => console.log(e)}
         className="drop-target relative w-full border-2 border-blue-800 m-1"
       >
         <div
@@ -88,7 +86,7 @@ export default function ButterCanvas({}) {
           drop here~
         </div>
         {itemsArray.map((i) => i)}
-      </section>
+      </div>
     </>
   );
 }

@@ -21,7 +21,7 @@ export default function Asset({ children }) {
         cursor: cursor,
         backgroundColor: "rgb(" + ref.current + ")",
       }}
-      className="asset font-bold flex justify-center items-center relative group h-32 shrink-0 rounded-sm border-2 border-blue-700"
+      className="asset font-bold text-2xl flex justify-center items-center relative group h-32 shrink-0 rounded-sm border-2 border-blue-700"
     >
       <span>{children}</span>
     </span>

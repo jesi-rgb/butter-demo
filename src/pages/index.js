@@ -3,6 +3,7 @@ import AssetLibrary from "@/components/AssetLibrary";
 import ButterCanvas from "@/components/ButterCanvas";
 
 export default function Home() {
+  let dragged = null;
   return (
     <>
       <Head>
