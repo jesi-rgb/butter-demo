@@ -20,9 +20,10 @@ export default function ButterCanvas({}) {
       reader.onload = function (reader) {
         const result = reader.target?.result;
         const dropPosition = {
-          x: e.clientX,
-          y: e.clientY,
+          x: e.screenX,
+          y: e.screenY,
         };
+        console.log(dropPosition);
         setItemsArray([
           ...itemsArray,
           <ImageItem
@@ -77,6 +78,7 @@ export default function ButterCanvas({}) {
         onDrop={drop}
         onDragOver={dragOver}
         onDragLeave={dragLeave}
+        onClick={(e) => console.log(e)}
         className="drop-target relative w-full border-2 border-blue-800 m-1"
       >
         <div

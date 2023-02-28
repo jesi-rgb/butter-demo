@@ -12,7 +12,6 @@ export default function ImageItem({ imgData, dropPosition }) {
       bounds="parent"
       onStart={() => setCursor("grabbing")}
       onStop={() => setCursor("grab")}
-      defaultPosition={dropPosition}
     >
       <ResizableBox
         className="box"

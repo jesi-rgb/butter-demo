@@ -8,9 +8,11 @@ export function Panel({ selected }) {
   console.log(selected);
   return (
     <LevaPanel
-      position={{ x: 1000, y: 1000 }}
       store={selected[0]?.userData.store}
-      titleBar={{ title: selected.map(() => "●").join(" ") }}
+      titleBar={{
+        title: selected.map(() => "●").join(" "),
+        position: { x: 0, y: 150 },
+      }}
     />
   );
 }

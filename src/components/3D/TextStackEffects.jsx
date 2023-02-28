@@ -46,26 +46,26 @@ export default function TextStackEffects({ effect }) {
 
     color: { value: "#837600" },
 
-    Glass: button((get) => {
-      setMirror((mirror) => !mirror);
-      setMetal(false);
-    }),
+    // Glass: button((get) => {
+    //   setMirror((mirror) => !mirror);
+    //   setMetal(false);
+    // }),
 
-    Metal: button((get) => {
-      setMetal((metal) => !metal);
-      setMirror(false);
-    }),
+    // Metal: button((get) => {
+    //   setMetal((metal) => !metal);
+    //   setMirror(false);
+    // }),
 
-    Motion: button((get) => setMotion((motion) => !motion)),
+    // Motion: button((get) => setMotion((motion) => !motion)),
 
-    "Base shape": button((get) => {}, { disabled: true }),
+    // "Base shape": button((get) => {}, { disabled: true }),
   });
 
   const isSelected = !!selected.find((sel) => sel === store);
 
   return (
     <>
-      <mesh ref={mesh} onClick={() => (textControls.text = "damn")}>
+      <mesh ref={mesh}>
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
