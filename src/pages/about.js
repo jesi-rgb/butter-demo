@@ -1,11 +1,24 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { Box, Gem, Leaf, Type } from "lucide-react";
+import {
+  ArrowBigUp,
+  Box,
+  Camera,
+  CircleDot,
+  CircleDotIcon,
+  Delete,
+  Gem,
+  Leaf,
+  MousePointerClick,
+  Rotate3d,
+  Type,
+} from "lucide-react";
+import { DotScreenShader } from "three-stdlib";
 
 export default function About() {
   return (
     <>
       <div className="mx-auto max-w-xl text-justify font-serif text-xl my-20 text-blue-800 flex flex-col space-y-7">
-        <h1 className="text-2xl font-bold font-serif mb-10">
+        <h1 className="text-2xl border-b border-blue-100 font-bold font-serif">
           A little explainer on what to expect
         </h1>
         <p>
@@ -45,6 +58,37 @@ export default function About() {
             <Leaf size={20} strokeWidth={2.5} />
           </span>{" "}
           motion.
+        </p>
+        <h2 className="text-2xl pt-10 border-b border-blue-100 font-bold font-serif mb-10">
+          Some tricks
+        </h2>
+        <p>
+          Shift{" "}
+          <span className="inline-block align-text-top">
+            <ArrowBigUp size={20} strokeWidth={2.5} />
+          </span>{" "}
+          +{" "}
+          <span className="inline-block align-text-top">
+            <MousePointerClick size={20} strokeWidth={2.5} />
+          </span>{" "}
+          clicking the little viewport will reset the text&apos;s rotation. In
+          reality, we are just changing its{" "}
+          <span className="inline-block align-text-top">
+            <Rotate3d size={20} strokeWidth={2.5} />
+          </span>{" "}
+          rotation to look at the{" "}
+          <span className="inline-block align-text-bottom">
+            <Camera size={20} strokeWidth={2.5} />
+          </span>{" "}
+          camera.
+        </p>
+        <p>
+          Hitting the{" "}
+          <span className="inline-block align-text-bottom">
+            <Delete size={20} strokeWidth={2.5} />
+          </span>{" "}
+          delete key will remove the last element added. This will unfortunately
+          reset all the existing ones.
         </p>
         <div>
           <a href="/">
