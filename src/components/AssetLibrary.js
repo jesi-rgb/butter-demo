@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+/* eslint-disable @next/next/no-html-link-for-pages */
 import {
   Box,
   Diamond,
