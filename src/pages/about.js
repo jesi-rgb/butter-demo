@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { Box, Gem, Leaf, Type } from "lucide-react";
 
 export default function About() {
