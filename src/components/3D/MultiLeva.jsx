@@ -10,7 +10,7 @@ export function Panel({ selected }) {
       store={selected[0]?.userData.store}
       titleBar={{
         title: selected.map(() => "●").join(" "),
-        position: { x: 0, y: 150 },
+        position: { x: 1200, y: 0 },
       }}
     />
   );
