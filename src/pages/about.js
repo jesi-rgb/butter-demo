@@ -30,7 +30,7 @@ export default function About() {
           already existing text component that they behave differently.
         </p>
         <p>
-          Another trick has to do with the order in which the effect appear to
+          Another trick has to do with the order in which the effects appear to
           be applied. The effects will always apply in the same order
           independently of the effect we drop into. It will always be first{" "}
           <span className="inline-block align-text-top">
