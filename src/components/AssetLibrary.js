@@ -1,13 +1,23 @@
-import { Box, Diamond, DiamondIcon, Gem, LucideDiamond } from "lucide-react";
+/* eslint-disable react/jsx-key */
+import {
+  Box,
+  Diamond,
+  DiamondIcon,
+  Gem,
+  Leaf,
+  LucideDiamond,
+  Type,
+} from "lucide-react";
 import Asset from "./Asset";
 import Effect from "./Effect";
 
-export default function AssetLibrary({ dragged }) {
-  let assets = ["Text"];
+export default function AssetLibrary() {
+  let assets = [<Type size={50} />];
 
   let effects = [
     { children: <Box size={50} />, id: "3D", color: "lavender" },
     { children: <Gem size={50} />, id: "Metal", color: "aquamarine" },
+    { children: <Leaf size={50} />, id: "Movement", color: "lightgreen" },
   ];
 
   return (

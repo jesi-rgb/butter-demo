@@ -32,9 +32,8 @@ export default function Draggable3DText() {
               return;
             }
           }}
-          className="p-3 border-4 focus:outline-none focus:ring focus:ring-violet-300 cursor-grab"
+          className="p-3 w-min border-4 focus:outline-none focus:ring focus:ring-violet-300 cursor-grab"
           draggable={false}
-          style={{ width: "600px" }}
         >
           <Scene>
             <TextStackEffects
