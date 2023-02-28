@@ -10,26 +10,33 @@ import {
   useCursor,
   useSelect,
   Edges,
+  Text,
+  useCamera,
 } from "@react-three/drei";
 import { button } from "leva";
 import { useControls } from "./MultiLeva";
 import { useRef, useState } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
 
 export default function TextStackEffects({ effect }) {
   const selected = useSelect().map((sel) => sel.userData.store);
   const mesh = useRef(null);
 
   let [motion, setMotion] = useState(false);
-  let [metal, setMetal] = useState(true);
+  let [metal, setMetal] = useState(false);
   let [mirror, setMirror] = useState(false);
+  let [is3D, setIs3D] = useState(false);
 
   let textOptions = {
-    height: 0.3,
+    height: 0.0,
     bevelEnabled: true,
     bevelSize: 0.05,
-    bevelThickness: Math.abs(0.05 * 1.4),
+    bevelThickness: 0.0,
     bevelSegments: 70,
   };
+
+  const { camera, size } = useThree();
+
   let [store, textControls] = useControls(selected, {
     text: { value: "butter" },
     font: {
@@ -65,7 +72,15 @@ export default function TextStackEffects({ effect }) {
 
   return (
     <>
-      <mesh ref={mesh}>
+      <mesh
+        ref={mesh}
+        onClick={(e) => {
+          if (e.shiftKey) {
+            console.log("lookin camera");
+            mesh.current.quaternion.copy(camera.quaternion);
+          }
+        }}
+      >
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
@@ -94,10 +109,8 @@ export default function TextStackEffects({ effect }) {
                   chromaticAberration={3.5}
                 />
               )}
+              <meshBasicMaterial color={textControls.color} />
             </Text3D>
-            <Edges visible={isSelected} scale={1.1} renderOrder={1000}>
-              <meshBasicMaterial transparent color="#333" depthTest={false} />
-            </Edges>
           </Center>
         </Float>
       </mesh>
