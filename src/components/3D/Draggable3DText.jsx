@@ -11,7 +11,11 @@ export default function Draggable3DText() {
     <>
       <Draggable bounds="parent" cancel=".no-cursor">
         <div
-          onDragOver={(e) => (e.preventDefault(), e.stopPropagation())}
+          onDragOver={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }}
           onDrop={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -32,7 +36,7 @@ export default function Draggable3DText() {
               return;
             }
           }}
-          className="p-3 w-min border-4 focus:outline-none focus:ring focus:ring-violet-300 cursor-grab"
+          className="p-1 w-min overscroll-none border-4 cursor-grab"
           draggable={false}
         >
           <Scene>

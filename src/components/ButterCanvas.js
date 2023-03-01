@@ -1,6 +1,7 @@
 import useDnD from "@/hooks/useDnD.js";
 import { useEffect, useState } from "react";
 import Draggable3DText from "./3D/Draggable3DText";
+import EffectList from "./EffectList";
 import ImageItem from "./ImageItem";
 
 export default function ButterCanvas() {
@@ -12,6 +13,7 @@ export default function ButterCanvas() {
     e.preventDefault();
 
     e.target.style = "background-color: none";
+    console.log(e);
 
     // means we are importing an image
     if (e.dataTransfer && e.dataTransfer.files.length > 0) {
@@ -57,6 +59,22 @@ export default function ButterCanvas() {
 
   function dragLeave(e) {
     e.target.style = "background-color: white";
+    console.log(e, "aa");
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (!dropped3D) {
+      setDropped3D(true);
+      return;
+    }
+    if (!droppedMetal) {
+      setDroppedMetal(true);
+      return;
+    }
+    if (!droppedMotion) {
+      setDroppedMotion(true);
+      return;
+    }
   }
 
   useEffect(() => {
@@ -65,10 +83,17 @@ export default function ButterCanvas() {
         console.log("deleting last element");
 
         setItemsArray(itemsArray.slice(0, -1));
+        setDropped3D(false);
+        setDroppedMotion(false);
+        setDroppedMetal(false);
       }
       e.stopPropagation();
     });
   });
+
+  let [dropped3D, setDropped3D] = useState(false),
+    [droppedMetal, setDroppedMetal] = useState(false),
+    [droppedMotion, setDroppedMotion] = useState(false);
 
   return (
     <>
@@ -81,12 +106,18 @@ export default function ButterCanvas() {
       >
         <div
           style={{ fontFamily: "cursive" }}
-          className="drop-label absolute left-1/2 pointer-events-none text-gray-600 text-center text-7xl my-32"
+          className="drop-label absolute left-0 right-0 text-center pointer-events-none text-gray-600 text-7xl my-32"
         >
           drop here~
         </div>
         {itemsArray.map((i) => i)}
       </div>
+
+      <EffectList
+        is3D={dropped3D}
+        isMetal={droppedMetal}
+        isMoving={droppedMotion}
+      />
     </>
   );
 }

@@ -10,11 +10,7 @@ import {
 export default function Effect({ children, id, color }) {
   const [cursor, setCursor] = useState("grab");
 
-  console.log(color);
   let ref = useRef();
-  useEffect(() => {
-    console.log(ref.current);
-  });
 
   return (
     <span
