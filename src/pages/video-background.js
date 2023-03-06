@@ -10,7 +10,11 @@ export default function VideoBackground() {
       </div>
 
       <VideoSketch />
+
       <MaskedVideoSketch />
+      <div className="absolute right-[700px] text-white outline-1 bottom-[550px] font-bold font-serif -z-10 text-[15rem]">
+        2023
+      </div>
     </>
   );
 }
