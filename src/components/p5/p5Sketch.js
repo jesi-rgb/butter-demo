@@ -15,7 +15,7 @@ export default function P5Sketch() {
     );
   };
   let setup = (p5, parentRef) => {
-    p5.createCanvas(1000, 600, p5.WEBGL).parent(parentRef);
+    p5.createCanvas(1300, 800, p5.WEBGL).parent(parentRef);
 
     console.log("mierdon");
 
@@ -43,8 +43,12 @@ export default function P5Sketch() {
     p5.shader(maskShader);
     maskShader.setUniform("bg", bg);
     maskShader.setUniform("fg", fg);
-    p5.fill(3);
+    p5.noStroke();
     p5.plane(p5.width, p5.height);
   };
-  return <Sketch preload={preload} setup={setup} draw={draw} />;
+  return (
+    <div className="border border-blue-800 w-min mx-auto my-10">
+      <Sketch preload={preload} setup={setup} draw={draw} />
+    </div>
+  );
 }
