@@ -25,5 +25,6 @@ export default function Asset({ children }) {
     >
       <span>{children}</span>
     </span>
-  );
+
+  )
 }

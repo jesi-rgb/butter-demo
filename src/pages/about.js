@@ -3,8 +3,6 @@ import {
   ArrowBigUp,
   Box,
   Camera,
-  CircleDot,
-  CircleDotIcon,
   Delete,
   Gem,
   Leaf,
@@ -12,7 +10,6 @@ import {
   Rotate3d,
   Type,
 } from "lucide-react";
-import { DotScreenShader } from "three-stdlib";
 
 export default function About() {
   return (
