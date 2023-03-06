@@ -41,13 +41,21 @@ export default function AssetLibrary() {
         </div>
       </div>
 
-      <div className="w-min">
+      <div className="w-min flex space-x-4">
         <a href="/about">
           <button
             className="bg-blue-800 text-blue-100 px-4 py-2 rounded-full hover:-translate-y-1 hover:bg-blue-600 transform transition-all
           "
           >
             About
+          </button>
+        </a>
+        <a href="/video-background">
+          <button
+            className="bg-blue-800 text-blue-100 px-4 py-2 rounded-full hover:-translate-y-1 hover:bg-blue-600 transform transition-all
+          "
+          >
+            Video
           </button>
         </a>
       </div>
