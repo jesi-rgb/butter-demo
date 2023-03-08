@@ -1,4 +1,5 @@
 import MaskedVideoSketch from "@/components/p5/MaskedVideoSketch";
+import VideoSandwich from "@/components/p5/VideoSandwich";
 import VideoSketch from "@/components/p5/VideoSketch";
 import Draggable from "react-draggable";
 
@@ -9,12 +10,9 @@ export default function VideoBackground() {
         Video Composition
       </div>
 
-      {/* <VideoSketch /> */}
-
-      <MaskedVideoSketch />
-      <div className="absolute right-[700px] text-blue-700 mix-blend-multiply outline-1 bottom-[550px] font-bold font-serif -z-10 text-[15rem]">
+      <VideoSandwich video={"videos/josh.mp4"} mask={"videos/josh-mask.mp4"}>
         2023
-      </div>
+      </VideoSandwich>
     </>
   );
 }
