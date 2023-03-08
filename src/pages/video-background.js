@@ -9,10 +9,10 @@ export default function VideoBackground() {
         Video Composition
       </div>
 
-      <VideoSketch />
+      {/* <VideoSketch /> */}
 
       <MaskedVideoSketch />
-      <div className="absolute right-[700px] text-white outline-1 bottom-[550px] font-bold font-serif -z-10 text-[15rem]">
+      <div className="absolute right-[700px] text-blue-700 mix-blend-multiply outline-1 bottom-[550px] font-bold font-serif -z-10 text-[15rem]">
         2023
       </div>
     </>

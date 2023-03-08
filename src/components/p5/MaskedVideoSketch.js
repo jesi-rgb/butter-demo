@@ -1,4 +1,3 @@
-import { Cloud } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
@@ -15,34 +14,40 @@ export default function MaskedVideoSketch() {
       "shaders/maskShader.frag"
     );
   };
+
   let setup = (p5, parentRef) => {
     p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
+    p5.shader(maskShader);
 
     const fgPromise = new Promise((resolve) => {
-      fg = p5.createVideo("videos/josh-mask.mp4", resolve);
+      fg = p5.createVideo("videos/josh-mask.mp4");
       fg.volume(0);
       fg.hide();
+      fg.time(1 / 30);
+      maskShader.setUniform("fg", fg);
+
+      resolve(fg);
     });
 
     const bgPromise = new Promise((resolve) => {
-      bg = p5.createVideo("videos/josh.mp4", resolve);
+      bg = p5.createVideo("videos/josh.mp4");
       bg.volume(0);
       bg.hide();
+      bg.time(30.25 / 30);
+      maskShader.setUniform("bg", bg);
+
+      resolve(bg);
     });
 
-    Promise.all([bgPromise, fgPromise]).then(() => {
+    Promise.all([bgPromise, fgPromise]).then((v) => {
       // Start both at once when they're both ready
+      //   v.map((v) => v.play());
       bg.loop();
       fg.loop();
     });
   };
 
   let draw = (p5) => {
-    p5.clear();
-    p5.shader(maskShader);
-    maskShader.setUniform("bg", bg);
-    maskShader.setUniform("fg", fg);
-    p5.noStroke();
     p5.plane(p5.width, p5.height);
   };
   return (
