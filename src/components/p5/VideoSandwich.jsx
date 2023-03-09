@@ -14,5 +14,6 @@ export default function VideoSandwich({ children, video, mask }) {
         <MaskedVideoSketch video={video} mask={mask} />
       </div>
     </div>
+
   );
 }

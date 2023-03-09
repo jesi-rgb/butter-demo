@@ -37,7 +37,7 @@ export default function MaskedVideoSketch({ video, mask }) {
       resolve(bg);
     });
 
-    Promise.all([bgPromise, fgPromise]).then((v) => {
+    Promise.all([bgPromise, fgPromise]).then(() => {
       bg.loop();
       fg.loop();
     });
