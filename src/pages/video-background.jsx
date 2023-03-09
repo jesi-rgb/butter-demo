@@ -7,8 +7,8 @@ export default function VideoBackground() {
         Video Composition
       </div>
 
-      <VideoSandwhichStacked stackedVideoPath={"videos/mega-josh.webm"}>
-        <div className="text-[20rem] absolute left-[200px] top-[10px] text-black text-center font-bold font-serif">
+      <VideoSandwhichStacked stackedVideoPath={"videos/mega-josh-t.webm"}>
+        <div className="text-[20rem] absolute left-[230px] top-[10px] text-blue-900 text-center font-bold font-serif">
           2023
         </div>
       </VideoSandwhichStacked>
