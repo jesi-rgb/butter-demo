@@ -26,9 +26,7 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
     textOptions.bevelThickness = 0.1;
   }
 
-  console.log(isMetal);
-
-  const { camera, size } = useThree();
+  const { camera } = useThree();
 
   let [store, textControls] = useControls(selected, {
     text: { value: "butter" },
@@ -43,7 +41,6 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
       },
       value: "abril-fatface",
     },
-
     color: { value: "#837600" },
   });
 
