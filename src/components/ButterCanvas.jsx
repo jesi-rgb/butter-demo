@@ -102,7 +102,7 @@ export default function ButterCanvas() {
         onDrop={drop}
         onDragOver={dragOver}
         onDragLeave={dragLeave}
-        className="drop-target relative w-full border-2 border-blue-700 m-1"
+        className="drop-target relative w-full border-2 border-blue-700 p-1"
       >
         <div
           style={{ fontFamily: "cursive" }}

@@ -1,22 +1,13 @@
 import {
-  Environment,
   MeshReflectorMaterial,
-  MeshTransmissionMaterial,
-  useTexture,
   Text3D,
   Center,
   Float,
-  useVideoTexture,
-  useCursor,
   useSelect,
-  Edges,
-  Text,
-  useCamera,
 } from "@react-three/drei";
-import { button } from "leva";
 import { useControls } from "./MultiLeva";
-import { useRef, useState } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useRef } from "react";
+import { useThree } from "@react-three/fiber";
 
 export default function TextStackEffects({ is3D, isMetal, isMoving }) {
   const selected = useSelect().map((sel) => sel.userData.store);
@@ -34,6 +25,8 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
     textOptions.height = 0.3;
     textOptions.bevelThickness = 0.1;
   }
+
+  console.log(isMetal);
 
   const { camera, size } = useThree();
 

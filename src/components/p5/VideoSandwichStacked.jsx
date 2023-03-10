@@ -37,24 +37,24 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
 
   return (
     <div className="mx-auto relative">
-      <div className="-z-10 absolute border mx-auto">
+      <div className="-z-10 absolute border mx-auto pointer-events-none">
         <Sketch setup={setup} draw={drawBackGround} />
       </div>
 
-      <div className="z-0 absolute">{children}</div>
+      <div className="z-0 absolute pointer-events-auto">{children}</div>
 
       {
-        // <div className="z-50 absolute border mix-blend-lighten mx-auto">
-        //   <Sketch setup={setup} draw={drawForeground} />
-        // </div>
+        <div className="z-50 absolute pointer-events-none border mix-blend-lighten mx-auto">
+          <Sketch setup={setup} draw={drawForeground} />
+        </div>
       }
       {
-        <div className="absolute z-50">
-          <MaskedVideoSketch
-            video={"videos/josh.mp4"}
-            mask={"videos/josh-mask.mp4"}
-          />
-        </div>
+        // <div className="absolute z-50">
+        //   <MaskedVideoSketch
+        //     video={"videos/josh.mp4"}
+        //     mask={"videos/josh-mask.mp4"}
+        //   />
+        // </div>
       }
     </div>
   );

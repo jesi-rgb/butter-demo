@@ -3,13 +3,20 @@ import Draggable from "react-draggable";
 import Scene from "./Scene";
 import TextStackEffects from "./TextStackEffects";
 
-export default function Draggable3DText() {
-  let [is3D, setIs3D] = useState(false);
-  let [isMetal, setIsMetal] = useState(false);
-  let [isMoving, setIsMoving] = useState(false);
+export default function Draggable3DText({
+  bounds = "parent",
+  wants3D = false,
+  wantsMetal = false,
+  wantsMoving = false,
+}) {
+  let [is3D, setIs3D] = useState(wants3D);
+  let [isMetal, setIsMetal] = useState(wantsMetal);
+  let [isMoving, setIsMoving] = useState(wantsMoving);
+
+  console.log(wantsMetal, isMetal);
   return (
     <>
-      <Draggable bounds="parent" cancel=".no-cursor">
+      <Draggable bounds={bounds} cancel=".no-cursor">
         <div
           onDragOver={(e) => {
             e.preventDefault();
@@ -19,7 +26,6 @@ export default function Draggable3DText() {
           onDrop={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            console.log("ducking sick");
             if (!is3D) {
               console.log("setting 3D");
               setIs3D(true);
