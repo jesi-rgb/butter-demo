@@ -4,8 +4,8 @@ import VideoSandwhichStacked from "@/components/p5/VideoSandwichStacked";
 export default function VideoBackground() {
   return (
     <>
-      <div className="text-center text-5xl mt-10 font-serif font-bold text-blue-800">
-        Video Composition
+      <div className="text-center text-5xl mj-10 font-display font-bold text-blue-800">
+        Butter
       </div>
 
       <VideoSandwhichStacked stackedVideoPath={"videos/mega-josh-t.webm"}>
@@ -24,7 +24,7 @@ export default function VideoBackground() {
 
       <a href="/">
         <button
-          className="bg-blue-800 absolute bottom-0 m-2 text-blue-100 px-4 py-2 rounded-full hover:-translate-y-1 hover:bg-blue-600 transform transition-all
+          className="bg-blue-800 z-10 absolute bottom-0 m-2 text-blue-100 px-4 py-2 rounded-full hover:-translate-y-1 hover:bg-blue-600 transform transition-all
           "
         >
           Back home!

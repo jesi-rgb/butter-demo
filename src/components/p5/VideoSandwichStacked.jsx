@@ -7,21 +7,14 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
 
 export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   let stackedVideo;
-  let offscreenGraphics;
 
   console.log(stackedVideoPath);
-  let setupBackground = (p5, parentRef) => {
+  let setup = (p5, parentRef) => {
     p5.createCanvas(1280, 720).parent(parentRef);
     stackedVideo = p5.createVideo(stackedVideoPath);
     stackedVideo.volume(0);
     stackedVideo.hide();
     stackedVideo.loop();
-  };
-
-  let setupForeground = (p5, parentRef) => {
-    p5.createCanvas(1280, 720).parent(parentRef);
-    offscreenGraphics = p5.createGraphics(1280, 720);
-    offscreenGraphics.image(stackedVideo, 0, 0, 1280, 720, 0, 0, 1280, 720);
   };
 
   let drawBackGround = (p5) => {
@@ -33,26 +26,24 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
 
   let drawForeground = (p5) => {
     p5.clear();
-    p5.image(offscreenGraphics, 0, 0, 1280, 720);
-    p5.fill(200);
-    p5.circle(
-      125,
-      100 + p5.cos(p5.frameCount / 100) * 50,
-      1 + p5.sin(p5.frameCount / 200) * 100
-    );
+    p5.image(stackedVideo, 0, 0, 1280, 720, 0, 720, 1280, 720);
+    p5.fill(127, 12, 129);
+    p5.circle(100, 100 + p5.sin(p5.frameCount / 100) * 50, 50);
   };
 
   return (
     <div className="mx-auto relative">
-      <div className="-z-10 absolute border mx-auto pointer-events-none">
-        <Sketch setup={setupBackground} draw={drawBackGround} />
-      </div>
+      {
+        // <div className="-z-10 absolute border mx-auto pointer-events-none">
+        //   <Sketch setup={setup} draw={drawBackGround} />
+        // </div>
+      }
 
       <div className="z-0 absolute pointer-events-auto">{children}</div>
 
       {
         <div className="z-50 absolute pointer-events-none border mix-blend-lighten mx-auto">
-          <Sketch setup={setupForeground} draw={drawForeground} />
+          <Sketch setup={setup} draw={drawForeground} />
         </div>
       }
       {
