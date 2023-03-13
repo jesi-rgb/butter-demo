@@ -19,11 +19,11 @@ export default function Home() {
           </h2>
           <div className="flex flex-col space-y-8 items-center mt-24 justify-evenly">
             <LandingButton text={"Text Editor"} link={"/editor"} />
+            <LandingButton text={"Music Integration"} linke={"/music"} />
             <LandingButton
               text={"Transparent Video"}
               link={"/video-background"}
             />
-            <LandingButton text={"Music Integration"} linke={"/music"} />
           </div>
         </div>
         <style global jsx>{`
