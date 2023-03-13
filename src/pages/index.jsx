@@ -5,14 +5,20 @@ export default function Home() {
     <>
       <div className="main w-screen">
         <div className="mx-auto content">
-          <h1 className="text-center text-9xl mix-blend-overlay tracking-tighter font-display font-extrabold">
+          <h1
+            className="text-center text-9xl mix-blend-overlay tracking-tighter font-display font-extrabold"
+            style={{ filter: "drop-shadow(4px 4px 3px #0E005E44)" }}
+          >
             Butter
           </h1>
-          <h2 className="text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mt-5 mx-auto">
+          <h2
+            className="text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mt-5 mx-auto"
+            style={{ filter: "drop-shadow(2px 2px 1px #0E005E33)" }}
+          >
             The next generation motion graphics tool
           </h2>
-          <div className="flex flex-row space-x-4 mt-24 max-w-4xl justify-evenly">
-            <LandingButton text={"Editor"} link={"/editor"} />
+          <div className="flex flex-col space-y-8 items-center mt-24 justify-evenly">
+            <LandingButton text={"Text Editor"} link={"/editor"} />
             <LandingButton
               text={"Transparent Video"}
               link={"/video-background"}
@@ -36,27 +42,20 @@ export default function Home() {
             width: 100%;
             height: 100%;
             top: 0;
-            --hue: 250;
+            --hue: 280;
             --second-hue: calc(var(--hue) + 180);
             background-image: radial-gradient(
-                at 17% 21%,
-                hsla(var(--hue), 98%, 72%, 1) 0px,
-                transparent 40%
+                ellipse at top,
+                hsla(var(--hue), 98%, 72%, 1) 1px,
+                transparent 100%
               ),
               radial-gradient(
-                at 92% 66%,
-                hsla(var(--hue), 98%, 61%, 1) 0px,
-                transparent 80%
-              ),
-              radial-gradient(
-                at 0% 99%,
-                hsla(var(--hue), 96%, 67%, 1) 0px,
-                transparent 40%
+                ellipse at bottom,
+                hsla(var(--second-hue), 98%, 61%, 1) 0px,
+                transparent 30%
               );
-            opacity: 0.3;
-            background-size: 100% 100%;
-            background-blend-mode: darken, darken, darken, darken, darken,
-              darken, darken;
+            opacity: 0.5;
+            background-size: 150% 150%;
           }
         `}</style>
       </div>
