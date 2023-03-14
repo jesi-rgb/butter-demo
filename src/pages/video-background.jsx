@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import Draggable3DText from "@/components/3D/Draggable3DText";
 import VideoSandwhichStacked from "@/components/p5/VideoSandwichStacked";
 
