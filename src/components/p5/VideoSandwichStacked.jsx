@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import MaskedVideoSketch from "./MaskedVideoSketch";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
@@ -20,40 +19,49 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   let drawBackGround = (p5) => {
     p5.clear();
     p5.image(stackedVideo, 0, 0, 1280, 720, 0, 0, 1280, 720);
-    p5.fill(127, 12, 129);
-    p5.circle(100, 100 + p5.sin(p5.frameCount / 100) * 50, 50);
+  };
+
+  //foreground maskedVideo stuff
+  // making another component means we are out of sync :(
+  let maskShader;
+  let preload = (p5) => {
+    maskShader = p5.loadShader(
+      "shaders/maskShader.vert",
+      "shaders/maskShader.frag"
+    );
+  };
+
+  let setupForeground = (p5, parentRef) => {
+    p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
+
+    // load and set the shader
+    p5.shader(maskShader);
+    maskShader.setUniform("video", stackedVideo);
   };
 
   let drawForeground = (p5) => {
-    p5.clear();
-    p5.image(stackedVideo, 0, 0, 1280, 720, 0, 720, 1280, 720);
-    p5.fill(127, 12, 129);
-    p5.circle(100, 100 + p5.sin(p5.frameCount / 100) * 50, 50);
+    p5.noStroke();
+    p5.rect(-p5.width / 2, -p5.height / 2, p5.width, p5.height);
   };
 
   return (
-    <div className="mx-auto relative">
-      {
-        // <div className="-z-10 absolute border mx-auto pointer-events-none">
-        //   <Sketch setup={setup} draw={drawBackGround} />
-        // </div>
-      }
+    <div className="mx-auto">
+      {/*background video. this video is rendered as is, untouched*/}
+      <div className="-z-10 absolute border mx-auto pointer-events-none">
+        <Sketch setup={setup} draw={drawBackGround} />
+      </div>
 
+      {/*children of the component that lie in between the two sketches*/}
       <div className="z-0 absolute pointer-events-auto">{children}</div>
 
-      {
-        <div className="z-50 absolute pointer-events-none border mix-blend-lighten mx-auto">
-          <Sketch setup={setup} draw={drawForeground} />
-        </div>
-      }
-      {
-        // <div className="absolute z-50">
-        //   <MaskedVideoSketch
-        //     video={"videos/josh.mp4"}
-        //     mask={"videos/josh-mask.mp4"}
-        //   />
-        // </div>
-      }
+      {/*foreground video. this video is masked from the runway mask*/}
+      <div className="z-50 absolute pointer-events-none border mx-auto">
+        <Sketch
+          preload={preload}
+          setup={setupForeground}
+          draw={drawForeground}
+        />
+      </div>
     </div>
   );
 }

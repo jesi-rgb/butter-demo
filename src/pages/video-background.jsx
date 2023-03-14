@@ -8,12 +8,7 @@ export default function VideoBackground() {
         Butter
       </div>
 
-      <VideoSandwhichStacked stackedVideoPath={"videos/mega-josh-t.webm"}>
-        {
-          // <div className="text-[20rem] absolute left-[230px] top-[10px] text-blue-900 text-center font-bold font-serif">
-          //   2023
-          // </div>
-        }
+      <VideoSandwhichStacked stackedVideoPath={"videos/mega-josh.mp4"}>
         <Draggable3DText
           bounds={null}
           wants3D={true}
