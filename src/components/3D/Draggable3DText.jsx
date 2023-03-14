@@ -19,9 +19,9 @@ export default function Draggable3DText({
       <Draggable bounds={bounds} cancel=".no-cursor">
         <div
           onDragOver={(e) => {
-            // e.preventDefault();
-            // e.stopPropagation();
-            // return;
+            e.preventDefault();
+            e.stopPropagation();
+            return;
           }}
           onDrop={(e) => {
             e.stopPropagation();

@@ -66,6 +66,7 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
             >
               {textControls.text}
 
+              <meshBasicMaterial color={textControls.color} />
               {isMetal && (
                 <MeshReflectorMaterial
                   resolution={8}
@@ -77,7 +78,6 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
                   distortion={1}
                 />
               )}
-              <meshBasicMaterial color={textControls.color} />
             </Text3D>
           </Center>
         </Float>
