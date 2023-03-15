@@ -76,7 +76,6 @@ export default function TextStackEffects() {
     }),
     Metal: button(() => {
       setMetal((metal) => !metal);
-      setTexture(false);
       setMirror(false);
     }),
     "Base shape": button(() => {}, { disabled: true }),
@@ -102,12 +101,6 @@ export default function TextStackEffects() {
           }
         }}
       >
-        <Environment
-          ground={enableBg ? { height: 5, scale: 50, radius: 70 } : null}
-          blur={190}
-          resolution={256}
-          files={background}
-        />
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
@@ -132,7 +125,7 @@ export default function TextStackEffects() {
               )}
               {mirror && (
                 <MeshTransmissionMaterial
-                  samples={20}
+                  samples={2}
                   color={textControls.color}
                   thickness={1}
                   chromaticAberration={0.5}

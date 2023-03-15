@@ -7,7 +7,7 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
 
 export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   let stackedVideo;
-  let [enableVideo, setEnableVideo] = useState(false);
+  let [enableVideo, setEnableVideo] = useState(true);
 
   let setup = (p5, parentRef) => {
     p5.createCanvas(1280, 720).parent(parentRef);
@@ -57,7 +57,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
       {/*background video. this video is rendered as is, untouched*/}
       <div
         className="-z-10 absolute border mx-auto pointer-events-none"
-        style={{ opacity: enableVideo ? 1 : 0 }}
+        style={{ visibility: enableVideo ? "visible" : "hidden" }}
       >
         <Sketch setup={setup} draw={drawBackGround} />
       </div>
@@ -68,7 +68,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
       {/*foreground video. this video is masked from the runway mask*/}
       <div
         className="z-50 absolute pointer-events-none border mx-auto"
-        style={{ opacity: enableVideo ? 1 : 0 }}
+        style={{ visibility: enableVideo ? "visible" : "hidden" }}
       >
         <Sketch
           preload={preload}

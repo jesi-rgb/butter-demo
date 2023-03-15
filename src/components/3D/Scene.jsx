@@ -36,20 +36,14 @@ export default function Scene({ children, fitScreen = false }) {
             />
             <ambientLight intensity={20000.75} />
 
-            <PivotControls
-              visible={selected.length > 0}
-              rotation={[Math.PI, -Math.PI / 2, 0]}
-              scale={1.75}
-            >
-              <Select onChange={setSelected}>{children}</Select>
-            </PivotControls>
+            <Select onChange={setSelected}>{children}</Select>
 
             <Preload all />
             <OrbitControls
               enableZoom={true}
               dampingFactor={0.3}
-              enableRotate={false}
-              enablePan={false}
+              enableRotate={true}
+              enablePan={true}
               makeDefault
             />
           </Suspense>
