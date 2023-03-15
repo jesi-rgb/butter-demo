@@ -78,15 +78,9 @@ export default function TextStackEffects() {
       setMetal((metal) => !metal);
       setMirror(false);
     }),
-    "Base shape": button(() => {}, { disabled: true }),
     Motion: button(() => setMotion((motion) => !motion)),
-    "Toggle Background": button(() => setEnableBg((enableBg) => !enableBg)),
-    "Photo Studio": button(() => setBackground(backgrounds["Photo Studio"])),
-    "Lake Pier": button(() => setBackground(backgrounds["Lake Pier"])),
-    "Neon Studio": button(() => setBackground(backgrounds["Neon Studio"])),
-    "Solitude Night": button(() =>
-      setBackground(backgrounds["Solitude Night"])
-    ),
+
+    "Base shape": button(() => {}, { disabled: true }),
   });
 
   return (
