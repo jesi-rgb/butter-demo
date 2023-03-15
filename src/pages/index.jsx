@@ -24,7 +24,6 @@ export default function Home() {
               text={"Transparent Video"}
               link={"/video-background"}
             />
-
             <LandingButton text={"Demo!"} link={"/demo"} />
           </div>
         </div>
