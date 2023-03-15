@@ -1,5 +1,12 @@
 @import url("https://api.fontshare.com/v2/css?f[]=literata@1&display=swap");
 
+@font-face {
+  font-family: "Cheee Demo Schemer";
+  src: url("/fonts/CheeeDemo-Schemer.otf") format("otf");
+  font-display: swap;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

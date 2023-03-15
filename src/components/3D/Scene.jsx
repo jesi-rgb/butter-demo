@@ -1,9 +1,14 @@
 import { Canvas } from "@react-three/fiber";
-import { Loader, OrbitControls, Preload, Select } from "@react-three/drei";
+import {
+  OrbitControls,
+  PivotControls,
+  Preload,
+  Select,
+} from "@react-three/drei";
 import { Suspense, useRef, useState } from "react";
 import { Panel } from "./MultiLeva";
 
-export default function Scene({ children }) {
+export default function Scene({ children, fitScreen = false }) {
   // Everything defined in here will persist between route changes, only children are swapped
   let ref = useRef();
   const [selected, setSelected] = useState([]);
@@ -14,13 +19,14 @@ export default function Scene({ children }) {
         onKeyDown={(e) => {
           if (e.key === "Escape") setSelected([]);
         }}
-        className="border-2 cursor-move no-cursor"
+        className="no-cursor"
+        style={fitScreen ? { width: "100vw", height: "100vh" } : {}}
       >
         <Canvas
           orthographic
           camera={{
             position: [-3, 4.2, 10.5],
-            zoom: 70,
+            zoom: 180,
           }}
         >
           <Suspense fallback={null}>
@@ -30,15 +36,21 @@ export default function Scene({ children }) {
             />
             <ambientLight intensity={20000.75} />
 
-            <Select onChange={setSelected}>{children}</Select>
-            {/* {children} */}
+            <PivotControls
+              visible={selected.length > 0}
+              rotation={[Math.PI, -Math.PI / 2, 0]}
+              scale={1.75}
+            >
+              <Select onChange={setSelected}>{children}</Select>
+            </PivotControls>
 
             <Preload all />
             <OrbitControls
-              enableZoom={false}
+              enableZoom={true}
               dampingFactor={0.3}
-              //   enableRotate={false}
+              enableRotate={false}
               enablePan={false}
+              makeDefault
             />
           </Suspense>
         </Canvas>

@@ -4,14 +4,35 @@ import {
   Center,
   Float,
   useSelect,
+  MeshTransmissionMaterial,
+  Environment,
 } from "@react-three/drei";
 import { useControls } from "./MultiLeva";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useThree } from "@react-three/fiber";
+import { button } from "leva";
 
-export default function TextStackEffects({ is3D, isMetal, isMoving }) {
+export default function TextStackEffects() {
   const selected = useSelect().map((sel) => sel.userData.store);
   const mesh = useRef(null);
+
+  let [threeD, setThreeD] = useState(false);
+  let [metal, setMetal] = useState(true);
+  let [mirror, setMirror] = useState(false);
+  let [motion, setMotion] = useState(false);
+  let [enableBg, setEnableBg] = useState(false);
+
+  const backgrounds = {
+    "Photo Studio":
+      "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/christmas_photo_studio_07_2k.hdr",
+    "Lake Pier":
+      "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lake_pier_1k.hdr",
+    "Neon Studio":
+      "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/neon_photostudio_2k.hdr",
+    "Solitude Night":
+      "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/solitude_night_2k.hdr",
+  };
+  let [background, setBackground] = useState(backgrounds["Photo Studio"]);
 
   let textOptions = {
     height: 0.0,
@@ -21,9 +42,12 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
     bevelSegments: 70,
   };
 
-  if (is3D) {
+  if (threeD) {
     textOptions.height = 0.3;
     textOptions.bevelThickness = 0.1;
+  } else {
+    textOptions.height = 0.0;
+    textOptions.bevelThickness = 0.0;
   }
 
   const { camera } = useThree();
@@ -38,10 +62,32 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
         Oswald: "oswald",
         "Abril Fatface": "abril-fatface",
         Lobster: "lobster",
+        Cheee: "cheee",
       },
-      value: "abril-fatface",
+      value: "cheee",
     },
-    color: { value: "#837600" },
+    color: { value: "#239dd1" },
+    "3D": button(() => {
+      setThreeD(!threeD);
+    }),
+    Glass: button(() => {
+      setMirror((mirror) => !mirror);
+      setMetal(false);
+    }),
+    Metal: button(() => {
+      setMetal((metal) => !metal);
+      setTexture(false);
+      setMirror(false);
+    }),
+    "Base shape": button(() => {}, { disabled: true }),
+    Motion: button(() => setMotion((motion) => !motion)),
+    "Toggle Background": button(() => setEnableBg((enableBg) => !enableBg)),
+    "Photo Studio": button(() => setBackground(backgrounds["Photo Studio"])),
+    "Lake Pier": button(() => setBackground(backgrounds["Lake Pier"])),
+    "Neon Studio": button(() => setBackground(backgrounds["Neon Studio"])),
+    "Solitude Night": button(() =>
+      setBackground(backgrounds["Solitude Night"])
+    ),
   });
 
   return (
@@ -56,7 +102,13 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
           }
         }}
       >
-        <Float speed={isMoving ? 3 : 0}>
+        <Environment
+          ground={enableBg ? { height: 5, scale: 50, radius: 70 } : null}
+          blur={190}
+          resolution={256}
+          files={background}
+        />
+        <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
               userData={{ store }}
@@ -67,7 +119,7 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
               {textControls.text}
 
               <meshBasicMaterial color={textControls.color} />
-              {isMetal && (
+              {metal && (
                 <MeshReflectorMaterial
                   resolution={8}
                   roughness={0.01}
@@ -76,6 +128,14 @@ export default function TextStackEffects({ is3D, isMetal, isMoving }) {
                   color={textControls.color}
                   metalness={1}
                   distortion={1}
+                />
+              )}
+              {mirror && (
+                <MeshTransmissionMaterial
+                  samples={20}
+                  color={textControls.color}
+                  thickness={1}
+                  chromaticAberration={0.5}
                 />
               )}
             </Text3D>

@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        hero: ["Cheee Demo"],
         display: ["Literata"],
       },
     },

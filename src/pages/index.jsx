@@ -6,13 +6,13 @@ export default function Home() {
       <div className="main w-screen">
         <div className="mx-auto content">
           <h1
-            className="text-center text-9xl mix-blend-overlay tracking-tighter font-display font-extrabold"
+            className="text-center mt-20 text-8xl md:text-[100px] xl:text-[200px]  mix-blend-overlay font-hero"
             style={{ filter: "drop-shadow(4px 4px 3px #0E005E44)" }}
           >
             Butter
           </h1>
           <h2
-            className="text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mt-5 mx-auto"
+            className="text-4xl xl:text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mx-auto"
             style={{ filter: "drop-shadow(2px 2px 1px #0E005E33)" }}
           >
             The next generation motion graphics tool
@@ -24,16 +24,11 @@ export default function Home() {
               text={"Transparent Video"}
               link={"/video-background"}
             />
+
+            <LandingButton text={"Demo!"} link={"/demo"} />
           </div>
         </div>
         <style global jsx>{`
-          .main {
-            min-height: 100vh;
-            position: fixed;
-            display: flex;
-            justify-content: center;
-            padding: 120px 24px 160px 24px;
-          }
           .main:before {
             background: radial-gradient(rgba(2, 0, 36, 0) 0, #fafafa 100%);
             position: absolute;
