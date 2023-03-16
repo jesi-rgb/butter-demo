@@ -46,36 +46,39 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   };
 
   return (
-    <div
-      className="mx-auto"
-      onDrop={(e) => {
-        e.preventDefault();
-        setEnableVideo(true);
-        console.log("drop the vid");
-      }}
-    >
-      {/*background video. this video is rendered as is, untouched*/}
-      <div
-        className="-z-10 absolute border mx-auto pointer-events-none"
-        style={{ visibility: enableVideo ? "visible" : "hidden" }}
-      >
-        <Sketch setup={setup} draw={drawBackGround} />
-      </div>
+    <>
+      <div className="mx-auto">
+        {/*background video. this video is rendered as is, untouched*/}
+        <div
+          className="-z-10 absolute border mx-auto pointer-events-none"
+          style={{ visibility: enableVideo ? "visible" : "hidden" }}
+        >
+          <Sketch setup={setup} draw={drawBackGround} />
+        </div>
 
-      {/*children of the component that lie in between the two sketches*/}
-      <div className="z-0 absolute">{children}</div>
+        {/*children of the component that lie in between the two sketches*/}
+        <div
+          className="z-0 absolute"
+          onClick={(e) => {
+            console.log("a");
+            setEnableVideo(true);
+          }}
+        >
+          {children}
+        </div>
 
-      {/*foreground video. this video is masked from the runway mask*/}
-      <div
-        className="z-50 absolute pointer-events-none border mx-auto"
-        style={{ visibility: enableVideo ? "visible" : "hidden" }}
-      >
-        <Sketch
-          preload={preload}
-          setup={setupForeground}
-          draw={drawForeground}
-        />
+        {/*foreground video. this video is masked from the runway mask*/}
+        <div
+          className="z-50 absolute pointer-events-none border mx-auto"
+          style={{ visibility: enableVideo ? "visible" : "hidden" }}
+        >
+          <Sketch
+            preload={preload}
+            setup={setupForeground}
+            draw={drawForeground}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

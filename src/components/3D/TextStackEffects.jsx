@@ -17,7 +17,7 @@ export default function TextStackEffects() {
   const mesh = useRef(null);
 
   let [threeD, setThreeD] = useState(false);
-  let [metal, setMetal] = useState(true);
+  let [metal, setMetal] = useState(false);
   let [mirror, setMirror] = useState(false);
   let [motion, setMotion] = useState(false);
   let [enableBg, setEnableBg] = useState(false);
@@ -70,13 +70,13 @@ export default function TextStackEffects() {
     "3D": button(() => {
       setThreeD(!threeD);
     }),
-    Glass: button(() => {
-      setMirror((mirror) => !mirror);
-      setMetal(false);
-    }),
     Metal: button(() => {
       setMetal((metal) => !metal);
       setMirror(false);
+    }),
+    Glass: button(() => {
+      setMirror((mirror) => !mirror);
+      setMetal(false);
     }),
     Motion: button(() => setMotion((motion) => !motion)),
 

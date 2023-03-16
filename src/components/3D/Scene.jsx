@@ -1,7 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import {
   OrbitControls,
-  PivotControls,
   Preload,
   Select,
 } from "@react-three/drei";

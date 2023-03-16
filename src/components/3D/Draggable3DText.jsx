@@ -3,10 +3,7 @@ import Draggable from "react-draggable";
 import Scene from "./Scene";
 import TextStackEffects from "./TextStackEffects";
 
-export default function Draggable3DText({
-  bounds = "parent",
-  fitScreen = false,
-}) {
+export default function Draggable3DText({ fitScreen = false }) {
   return (
     <>
       <div
@@ -18,30 +15,11 @@ export default function Draggable3DText({
         onDrop={(e) => {
           e.stopPropagation();
           e.preventDefault();
-          // if (!is3D) {
-          //   console.log("setting 3D");
-          //   setIs3D(true);
-          //   return;
-          // }
-          // if (!isMetal) {
-          //   console.log("setting metal");
-          //   setIsMetal(true);
-          //   return;
-          // }
-          // if (!isMoving) {
-          //   console.log("setting movemetn");
-          //   setIsMoving(true);
-          //   return;
-          // }
         }}
         draggable={false}
       >
         <Scene fitScreen={fitScreen}>
-          <TextStackEffects
-          // is3D={is3D}
-          // isMetal={isMetal}
-          // isMoving={isMoving}
-          />
+          <TextStackEffects />
         </Scene>
       </div>
     </>
