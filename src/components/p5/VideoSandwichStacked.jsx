@@ -6,24 +6,23 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
 });
 
 export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
+  let enableVideo = false;
   let stackedVideo;
-  let [enableVideo, setEnableVideo] = useState(false);
 
   let setupBackground = (p5, parentRef) => {
-    console.log("setup run");
+    p5.createCanvas(1280, 720).parent(parentRef);
 
-    let cnv = p5.createCanvas(1280, 720).parent(parentRef);
     stackedVideo = p5.createVideo(stackedVideoPath);
     stackedVideo.volume(0);
     stackedVideo.hide();
     stackedVideo.loop();
-
-    cnv.drop(() => p5.print("hola"));
   };
 
   let drawBackGround = (p5) => {
-    p5.noStroke();
-    p5.image(stackedVideo, 0, 0, 1280, 720, 0, 0, 1280, 720);
+    if (enableVideo) {
+      p5.noStroke();
+      p5.image(stackedVideo, 0, 0, 1280, 720, 0, 0, 1280, 720);
+    }
   };
 
   //foreground maskedVideo stuff
@@ -36,26 +35,36 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
     );
   };
 
+  let cnv;
   let setupForeground = (p5, parentRef) => {
-    let cnv = p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
+    cnv = p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
 
+    let stackedVideoFg = p5.createVideo(stackedVideoPath);
+    stackedVideoFg.volume(0);
+    stackedVideoFg.hide();
+    stackedVideoFg.loop();
     // load and set the shader
     p5.shader(maskShader);
-    maskShader.setUniform("video", stackedVideo);
+    maskShader.setUniform("video", stackedVideoFg);
 
-    cnv.drop(() => console.log("hola"));
+    cnv.drop(() => {
+      enableVideo = true;
+      cnv.attribute("pointer-events", "none");
+    });
   };
 
   let drawForeground = (p5) => {
-    p5.noStroke();
-    p5.rect(-p5.width / 2, -p5.height / 2, p5.width, p5.height);
+    if (enableVideo) {
+      p5.noStroke();
+      p5.rect(-p5.width / 2, -p5.height / 2, p5.width, p5.height);
+    }
   };
 
   return (
     <>
       <div className="m-20 flex justify-center">
         {/*background video. this video is rendered as is, untouched*/}
-        <div className="-z-10 absolute mx-auto pointer-events-none">
+        <div className="-z-10 absolute mx-auto">
           <Sketch setup={setupBackground} draw={drawBackGround} />
         </div>
 
@@ -63,7 +72,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
         <div className="z-0 absolute">{children}</div>
 
         {/*foreground video. this video is masked from the runway mask*/}
-        <div className="z-50 absolute pointer-events-none mx-auto">
+        <div className="z-50 absolute mx-auto">
           <Sketch
             preload={preload}
             setup={setupForeground}
