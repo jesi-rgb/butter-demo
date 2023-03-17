@@ -10,7 +10,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   let [enableVideo, setEnableVideo] = useState(true);
 
   let setup = (p5, parentRef) => {
-    p5.createCanvas(1280, 720).parent(parentRef);
+    let canvas = p5.createCanvas(1280, 720).parent(parentRef);
     stackedVideo = p5.createVideo(stackedVideoPath);
     stackedVideo.volume(0);
     stackedVideo.hide();
@@ -47,29 +47,21 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
 
   return (
     <>
-      <div className="mx-auto">
+      <div className="m-20 flex justify-center">
         {/*background video. this video is rendered as is, untouched*/}
         <div
-          className="-z-10 absolute border mx-auto pointer-events-none"
+          className="-z-10 absolute mx-auto pointer-events-none"
           style={{ visibility: enableVideo ? "visible" : "hidden" }}
         >
           <Sketch setup={setup} draw={drawBackGround} />
         </div>
 
         {/*children of the component that lie in between the two sketches*/}
-        <div
-          className="z-0 absolute"
-          onClick={(e) => {
-            console.log("a");
-            setEnableVideo(true);
-          }}
-        >
-          {children}
-        </div>
+        <div className="z-0 absolute">{children}</div>
 
         {/*foreground video. this video is masked from the runway mask*/}
         <div
-          className="z-50 absolute pointer-events-none border mx-auto"
+          className="z-50 absolute pointer-events-none mx-auto"
           style={{ visibility: enableVideo ? "visible" : "hidden" }}
         >
           <Sketch

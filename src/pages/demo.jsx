@@ -6,7 +6,7 @@ export default function Demo() {
   return (
     <>
       <VideoSandwhichStacked stackedVideoPath={"/videos/mega-josh.mp4"}>
-        <Draggable3DText fitScreen={true} bounds={null} />
+        <Draggable3DText fitScreen={true} />
       </VideoSandwhichStacked>
     </>
   );

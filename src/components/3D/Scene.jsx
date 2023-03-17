@@ -1,9 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Preload,
-  Select,
-} from "@react-three/drei";
+import { OrbitControls, Preload, Select } from "@react-three/drei";
 import { Suspense, useRef, useState } from "react";
 import { Panel } from "./MultiLeva";
 
@@ -18,8 +14,7 @@ export default function Scene({ children, fitScreen = false }) {
         onKeyDown={(e) => {
           if (e.key === "Escape") setSelected([]);
         }}
-        className="no-cursor"
-        style={fitScreen ? { width: "100vw", height: "100vh" } : {}}
+        className="no-cursor w-[1280px] h-[720px]"
       >
         <Canvas
           orthographic
@@ -43,7 +38,6 @@ export default function Scene({ children, fitScreen = false }) {
               dampingFactor={0.3}
               enableRotate={true}
               enablePan={true}
-              makeDefault
             />
           </Suspense>
         </Canvas>
