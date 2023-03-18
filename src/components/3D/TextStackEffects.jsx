@@ -95,6 +95,7 @@ export default function TextStackEffects() {
           }
         }}
       >
+        <Environment preset="city" />
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
