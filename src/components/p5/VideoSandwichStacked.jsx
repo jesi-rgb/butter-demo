@@ -91,7 +91,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
         onDragLeave={dragLeave}
         onDrop={dragLeave}
         onDragOver={dragOver}
-        className="p-10 bottom-[10%] font-display text-white font-semibold right-0 w-max transition-all bg-black mix-blend-overlay rounded-xl mx-auto mt-[730px] drop-shadow-lg border border-opacity-50 border-gray-500 ring-opacity-60 ring-gray-700"
+        className="p-10 bottom-[10%] font-display text-white text-2xl z-[100] font-semibold right-0 w-max transition-all bg-black mix-blend-overlay rounded-xl mx-auto mt-[730px] border border-opacity-50 border-gray-500 ring-opacity-60 ring-gray-700"
       >
         Drag &apos;n&apos; drop video here!
       </div>

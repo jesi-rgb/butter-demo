@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        hero: ["Cheee Demo"],
-        display: ["Literata"],
+        hero: ["PP Right Grotesk"],
+        display: ["PP Right Grotesk Text"],
       },
     },
   },

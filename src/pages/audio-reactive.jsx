@@ -1,8 +1,10 @@
+import Layout from "@/components/Layout";
+
 export default function AudioReactive() {
   return (
     <>
-      <div className="main">
-        <h1 className="font-display mix-blend-overlay font-bold text-7xl text-center my-10">
+      <Layout>
+        <h1 className="font-hero mix-blend-overlay font-bold text-7xl text-center my-10">
           Audio Reactive Text
         </h1>
         <div className="flex mt-20 gap-14 mx-10">
@@ -16,7 +18,7 @@ export default function AudioReactive() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           />
-          <div className="font-display mix-blend-overlay w-1/4 text-xl mx-auto flex flex-col space-y-4 self-end">
+          <div className="font-display mix-blend-overlay w-1/4 text-3xl mx-auto flex flex-col space-y-4 self-end tracking-tighter">
             <p>
               Just a small little demo about how reactive text would work in
               butter, the next generation motion graphics tool.{" "}
@@ -54,7 +56,7 @@ export default function AudioReactive() {
             background-size: 150% 150%;
           }
         `}</style>
-      </div>
+      </Layout>
     </>
   );
 }

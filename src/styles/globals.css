@@ -6,6 +6,16 @@
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: "PP Right Grotesk Compact Black";
+  src: url("/fonts/PPRightGrotesk-CompactBlack.otf") format("otf");
+  font-display: swap;
+}
+@font-face {
+  font-family: "PP Right Grotesk Text Medium";
+  src: url("/fonts/PPRightGroteskText-Medium.otf") format("otf");
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
