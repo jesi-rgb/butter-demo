@@ -6,7 +6,7 @@ export default function Home() {
       <div className="main w-screen">
         <div className="mx-auto content">
           <h1
-            className="text-center mt-20 text-8xl md:text-[100px] xl:text-[200px]  mix-blend-overlay font-hero"
+            className="text-center mt-40 text-8xl md:text-[100px] xl:text-[200px]  mix-blend-overlay font-hero"
             style={{ filter: "drop-shadow(4px 4px 3px #0E005E44)" }}
           >
             Butter
@@ -18,12 +18,7 @@ export default function Home() {
             The next generation motion graphics tool
           </h2>
           <div className="flex flex-col space-y-8 items-center mt-24 justify-evenly">
-            <LandingButton text={"Text Editor"} link={"/editor"} />
-            <LandingButton text={"Music Integration"} linke={"/music"} />
-            <LandingButton
-              text={"Transparent Video"}
-              link={"/video-background"}
-            />
+            <LandingButton text={"Audio Reactive"} link={"/audio-reactive"} />
             <LandingButton text={"Demo!"} link={"/demo"} />
           </div>
         </div>

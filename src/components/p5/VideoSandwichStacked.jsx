@@ -35,9 +35,8 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
     );
   };
 
-  let cnv;
   let setupForeground = (p5, parentRef) => {
-    cnv = p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
+    p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
 
     stackedVideo = p5.createVideo(stackedVideoPath);
     stackedVideo.volume(0);
@@ -60,25 +59,26 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   };
 
   function dragOver(e) {
-    e.target.style = "background-color: #FF349033; transform:scale(1.15, 1.15)";
+    e.target.style = "background-color: #2C0046AA; transform:scale(1.15, 1.15)";
   }
   function dragLeave(e) {
-    e.target.style = "background-color: rgb(229 231 235)";
+    e.target.style = "background-color: #2C0046;";
   }
 
   return (
     <>
       <div className="m-20 flex justify-center">
         {/*background video. this video is rendered as is, untouched*/}
-        <div className="-z-10 absolute mx-auto border-2 rounded-md">
+        <div className="z-1 w-[1280px] h-[725px] bg-white absolute"></div>
+        <div className="z-0 absolute border-4 border-purple-900 rounded-md">
           <Sketch setup={setupBackground} draw={drawBackGround} />
         </div>
 
         {/*children of the component that lie in between the two sketches*/}
-        <div className="z-0 absolute">{children}</div>
+        <div className="z-10 absolute">{children}</div>
 
         {/*foreground video. this video is masked from the runway mask*/}
-        <div className="z-50 absolute mx-auto pointer-events-none">
+        <div className="z-50 absolute pointer-events-none">
           <Sketch
             preload={preload}
             setup={setupForeground}
@@ -91,7 +91,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
         onDragLeave={dragLeave}
         onDrop={dragLeave}
         onDragOver={dragOver}
-        className="p-10 bottom-[10%] font-display font-semibold right-0 w-max transition-all bg-gray-200 rounded-xl mx-auto mt-[730px] drop-shadow-lg border border-opacity-50  border-gray-500 ring-opacity-60 ring-gray-700"
+        className="p-10 bottom-[10%] font-display text-white font-semibold right-0 w-max transition-all bg-black mix-blend-overlay rounded-xl mx-auto mt-[730px] drop-shadow-lg border border-opacity-50 border-gray-500 ring-opacity-60 ring-gray-700"
       >
         Drag &apos;n&apos; drop video here!
       </div>
