@@ -24,7 +24,7 @@ export default function AudioReactive() {
               butter, the next generation motion graphics tool.{" "}
             </p>
             <p>
-              Ideally, the user will simply drop in whatever audio they've got
+              Ideally, the user will simply drop in whatever audio they have
               available and Butter will take care of the rest. Animations will
               snap to the beat and text can freely dance to the music.
             </p>

@@ -8,7 +8,7 @@ export default function Home() {
         <div className="mx-auto content">
           <h1
             className="text-center mt-40 text-8xl md:text-[100px] xl:text-[200px]  mix-blend-overlay font-hero"
-            style={{ filter: "drop-shadow(4px 4px 3px #0E005E44)" }}
+            style={{ filter: "drop-shadow(4px 4px 4px #0E005E66)" }}
           >
             Butter
           </h1>
@@ -18,7 +18,7 @@ export default function Home() {
           >
             The next generation motion graphics tool
           </h2>
-          <div className="flex flex-col space-y-8 items-center mt-24 justify-evenly">
+          <div className="flex flex-col items-center mt-24">
             <LandingButton text={"Audio Reactive"} link={"/audio-reactive"} />
             <LandingButton text={"Demo!"} link={"/demo"} />
           </div>
