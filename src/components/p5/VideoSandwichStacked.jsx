@@ -67,7 +67,10 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
 
   return (
     <>
-      <div className="m-20 flex justify-center">
+      <div className="text-7xl font-hero text-black mix-blend-overlay text-center mt-10">
+        Video Layering
+      </div>
+      <div className="mx-20 mt-10 flex justify-center">
         {/*background video. this video is rendered as is, untouched*/}
         <div className="z-1 w-[1280px] h-[725px] bg-white absolute"></div>
         <div className="z-0 absolute border-4 border-purple-900 rounded-md">

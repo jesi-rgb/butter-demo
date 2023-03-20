@@ -7,9 +7,9 @@ export default function AudioReactive() {
         <h1 className="font-hero mix-blend-overlay font-bold text-7xl text-center my-10">
           Audio Reactive Text
         </h1>
-        <div className="flex mt-20 gap-14 mx-10">
+        <div className="flex flex-col lg:flex-row mt-20 gap-14 mx-10">
           <iframe
-            className="w-3/4 mx-auto rounded-xl"
+            className="w-full lg:w-3/4 mx-auto rounded-xl"
             width="1280"
             height="720"
             src="https://www.youtube.com/embed/u5VwTaKjIDU"
@@ -18,7 +18,7 @@ export default function AudioReactive() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           />
-          <div className="font-display mix-blend-overlay w-1/4 text-3xl mx-auto flex flex-col space-y-4 self-end tracking-tighter">
+          <div className="font-display mix-blend-overlay w-full lg:w-1/4 text-3xl mx-auto flex flex-col space-y-4 self-end tracking-tighter">
             <p>
               Just a small little demo about how reactive text would work in
               butter, the next generation motion graphics tool.{" "}
