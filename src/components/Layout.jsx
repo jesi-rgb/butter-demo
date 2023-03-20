@@ -2,14 +2,18 @@ import BackButton from "./BackButton";
 
 export default function Layout({ children }) {
   return (
-    <div className="main">
-      {children}
+    <>
+      <div className="main">
+        <div className="content">{children}</div>
 
-      <style jsx>{`
+        <BackButton />
+      </div>
+      <style global jsx>{`
         .main:before {
           background: radial-gradient(rgba(2, 0, 36, 0) 0, #fafafa 100%);
-          z-index: -2;
           position: fixed;
+          content: "";
+          z-index: -2;
           width: 100%;
           height: 100%;
           top: 0;
@@ -25,11 +29,10 @@ export default function Layout({ children }) {
               hsla(var(--second-hue), 98%, 61%, 1) 0px,
               transparent 30%
             );
-          opacity: 0.5;
+          opacity: 0.7;
           background-size: 150% 150%;
         }
       `}</style>
-      <BackButton />
-    </div>
+    </>
   );
 }

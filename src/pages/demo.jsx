@@ -1,7 +1,6 @@
 import Draggable3DText from "@/components/3D/Draggable3DText";
 import Layout from "@/components/Layout";
 import VideoSandwhichStacked from "@/components/p5/VideoSandwichStacked";
-import { useState } from "react";
 
 export default function Demo() {
   return (
