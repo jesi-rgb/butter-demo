@@ -67,7 +67,7 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
 
   return (
     <>
-      <div className="text-7xl font-hero text-black mix-blend-overlay text-center mt-10">
+      <div className="text-7xl font-bold font-hero text-black mix-blend-overlay text-center mt-10">
         Video Layering
       </div>
       <div className="mx-20 mt-10 flex justify-center">

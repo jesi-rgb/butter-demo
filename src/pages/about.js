@@ -17,7 +17,7 @@ export default function About() {
     <>
       <Layout>
         <div className="mx-auto mix-blend-overlay max-w-xl text-justify font-display tracking-tight text-xl my-20 text-black flex flex-col space-y-7">
-          <h1 className="text-4xl font-hero border-b border-black font-bold tracking-wide">
+          <h1 className="text-4xl font-hero border-b border-black font-bold">
             A little explainer on what to expect
           </h1>
           <p>
@@ -26,39 +26,25 @@ export default function About() {
             are all on the same page.
           </p>
           <p>
-            The{" "}
-            <span className="inline-block align-text-top">
-              <Type size={20} strokeWidth={2.5} />
-            </span>{" "}
-            block seemingly spawns some text when dropped into the canvas. But,
-            in reality, so does every component.
+            The viewport we are presented with is a stack of 3 elements. A video
+            background, a middle layer of 3D elements and a cropped video
+            foreground.
           </p>
           <p>
-            The <b>Effect</b> blocks also spawn{" "}
-            <span className="inline-block align-text-top">
-              <Type size={20} strokeWidth={2.5} />
-            </span>{" "}
-            text components. It&apos;s only when they&apos;re dropped into an
-            already existing text component that they behave differently.
+            The video is actually hidden and upon dropping an item into the box
+            below, we make it visible. It does not matter what we throw in
+            there. We just check <span className="font-semibold">if</span>{" "}
+            something dropped and reveal the video layers.
           </p>
           <p>
-            Another trick has to do with the order in which the effects appear
-            to be applied. The effects will always apply in the same order
-            independently of the effect we drop into. It will always be first{" "}
-            <span className="inline-block align-text-top">
-              <Box size={20} strokeWidth={2.5} />
-            </span>{" "}
-            3D, then{" "}
-            <span className="inline-block align-text-top">
-              <Gem size={20} strokeWidth={2.5} />
-            </span>{" "}
-            shiny/metal, and lastly,{" "}
-            <span className="inline-block align-text-top">
-              <Leaf size={20} strokeWidth={2.5} />
-            </span>{" "}
-            motion.
+            The 3D elements are being presented through a real-time 3D
+            environment. To pretend layout movement and positioning, we are
+            moving the camera. To pretend rotation, we just rotate the camera
+            around. And zooming the viewport with the scrollwheel feels like
+            scaling the object itself. This works because there&apos;s no point
+            of reference.
           </p>
-          <h2 className="text-4xl font-hero border-b border-black font-bold tracking-wide">
+          <h2 className="text-4xl font-hero border-b border-black font-bold">
             Some tricks
           </h2>
           <p>
@@ -70,7 +56,7 @@ export default function About() {
             <span className="inline-block align-text-top">
               <MousePointerClick size={20} strokeWidth={2.5} />
             </span>{" "}
-            clicking the little viewport will reset the text&apos;s rotation. In
+            clicking the viewport will reset the text&apos;s rotation. In
             reality, we are just changing its{" "}
             <span className="inline-block align-text-top">
               <Rotate3d size={20} strokeWidth={2.5} />
@@ -81,14 +67,9 @@ export default function About() {
             </span>{" "}
             camera.
           </p>
-          <p>
-            Hitting the{" "}
-            <span className="inline-block align-text-bottom mb-[1.8px]">
-              <Delete size={20} strokeWidth={2.5} />
-            </span>{" "}
-            delete key will remove the last element added. This will
-            unfortunately reset all the existing ones.
-          </p>
+          <p>Using the scroll wheel will scale the text object.</p>
+          <p>Left click moves the object.</p>
+          <p>Right click rotates the object.</p>
         </div>
       </Layout>
     </>

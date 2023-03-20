@@ -4,23 +4,21 @@ export default function Home() {
   return (
     <>
       <div className="main">
-        <div className="mx-auto content">
-          <h1
-            className="text-center mt-40 text-8xl md:text-[100px] xl:text-[200px] mix-blend-overlay font-hero"
-            style={{ filter: "drop-shadow(4px 4px 4px #0E005E66)" }}
-          >
-            Butter
-          </h1>
-          <h2
-            className="text-4xl xl:text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mx-auto"
-            style={{ filter: "drop-shadow(2px 2px 1px #0E005E33)" }}
-          >
-            The next generation motion graphics tool
-          </h2>
-          <div className="flex flex-col items-center mt-24">
-            <LandingButton text={"Audio Reactive"} link={"/audio-reactive"} />
-            <LandingButton text={"Demo!"} link={"/demo"} />
-          </div>
+        <h1
+          className="text-center mt-40 font-extrabold text-8xl md:text-[100px] xl:text-[200px] mix-blend-overlay font-hero"
+          style={{ filter: "drop-shadow(4px 4px 4px #0E005E66)" }}
+        >
+          Butter
+        </h1>
+        <h2
+          className="text-4xl xl:text-5xl font-extralight tracking-tighter mix-blend-overlay font-display text-center max-w-md mx-auto"
+          style={{ filter: "drop-shadow(2px 2px 1px #0E005E33)" }}
+        >
+          The next generation motion graphics tool
+        </h2>
+        <div className="flex flex-col items-center mt-24">
+          <LandingButton text={"Audio Reactive"} link={"/audio-reactive"} />
+          <LandingButton text={"Demo!"} link={"/demo"} />
         </div>
       </div>
       <style global jsx>{`
