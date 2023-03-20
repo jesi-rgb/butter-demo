@@ -1,20 +1,23 @@
 @import url("https://api.fontshare.com/v2/css?f[]=literata@1&display=swap");
 
 @font-face {
-  font-family: "Cheee Demo Schemer";
+  font-family: "CheeeDemo";
   src: url("/fonts/CheeeDemo-Schemer.otf") format("otf");
-  font-display: swap;
+  /* font-display: swap; */
   font-style: normal;
 }
+
 @font-face {
   font-family: "PP Right Grotesk Compact Black";
-  src: url("/fonts/PPRightGrotesk-CompactBlack.otf") format("otf");
-  font-display: swap;
+  src: url("/fonts/PPRightGrotesk-CompactBlack.otf");
+  font-style: normal;
 }
+
 @font-face {
   font-family: "PP Right Grotesk Text Medium";
-  src: url("/fonts/PPRightGroteskText-Medium.otf") format("otf");
-  font-display: swap;
+  src: url("/fonts/PPRightGroteskText-Medium.otf");
+  font-style: medium;
+  /* font-display: swap; */
 }
 
 @tailwind base;

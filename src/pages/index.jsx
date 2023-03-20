@@ -4,10 +4,10 @@ import Layout from "@/components/Layout";
 export default function Home() {
   return (
     <>
-      <div className="main w-screen">
+      <div className="main">
         <div className="mx-auto content">
           <h1
-            className="text-center mt-40 text-8xl md:text-[100px] xl:text-[200px]  mix-blend-overlay font-hero"
+            className="text-center mt-40 text-8xl md:text-[100px] xl:text-[200px] mix-blend-overlay font-hero"
             style={{ filter: "drop-shadow(4px 4px 4px #0E005E66)" }}
           >
             Butter
@@ -27,7 +27,7 @@ export default function Home() {
       <style global jsx>{`
         .main:before {
           background: radial-gradient(rgba(2, 0, 36, 0) 0, #fafafa 100%);
-          position: absolute;
+          position: fixed;
           content: "";
           z-index: -2;
           width: 100%;
@@ -45,7 +45,6 @@ export default function Home() {
               hsla(var(--second-hue), 98%, 61%, 1) 0px,
               transparent 30%
             );
-          opacity: 0.5;
           background-size: 150% 150%;
         }
       `}</style>

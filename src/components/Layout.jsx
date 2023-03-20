@@ -5,12 +5,11 @@ export default function Layout({ children }) {
     <div className="main">
       {children}
 
-      <style global jsx>{`
+      <style jsx>{`
         .main:before {
           background: radial-gradient(rgba(2, 0, 36, 0) 0, #fafafa 100%);
-          position: absolute;
-          content: "";
           z-index: -2;
+          position: fixed;
           width: 100%;
           height: 100%;
           top: 0;
