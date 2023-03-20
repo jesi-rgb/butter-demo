@@ -1,5 +1,4 @@
 import LandingButton from "@/components/LandingButton";
-import Layout from "@/components/Layout";
 
 export default function Home() {
   return (
@@ -45,6 +44,7 @@ export default function Home() {
               hsla(var(--second-hue), 98%, 61%, 1) 0px,
               transparent 30%
             );
+          opacity: 0.7;
           background-size: 150% 150%;
         }
       `}</style>
