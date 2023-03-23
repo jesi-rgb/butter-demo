@@ -33,16 +33,16 @@ export default function Home() {
           --hue: 280;
           --second-hue: calc(var(--hue) + 180);
           background-image: radial-gradient(
-              ellipse at top,
+              ellipse at top right,
               hsla(var(--hue), 98%, 72%, 1) 1px,
-              transparent 100%
+              transparent 80%
             ),
             radial-gradient(
-              ellipse at bottom,
-              hsla(var(--second-hue), 98%, 61%, 1) 0px,
-              transparent 30%
+              ellipse at bottom left,
+              hsla(var(--hue), 98%, 61%, 1) 0px,
+              transparent 50%
             );
-          opacity: 0.7;
+          opacity: 0.9;
           background-size: 150% 150%;
         }
       `}</style>

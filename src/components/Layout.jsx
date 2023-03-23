@@ -29,7 +29,7 @@ export default function Layout({ children }) {
               hsla(var(--second-hue), 98%, 61%, 1) 0px,
               transparent 30%
             );
-          opacity: 0.7;
+          opacity: 0.4;
           background-size: 150% 150%;
         }
       `}</style>

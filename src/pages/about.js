@@ -1,16 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Layout from "@/components/Layout";
-import {
-  ArrowBigUp,
-  Box,
-  Camera,
-  Delete,
-  Gem,
-  Leaf,
-  MousePointerClick,
-  Rotate3d,
-  Type,
-} from "lucide-react";
+import { ArrowBigUp, Camera, MousePointerClick, Rotate3d } from "lucide-react";
 
 export default function About() {
   return (

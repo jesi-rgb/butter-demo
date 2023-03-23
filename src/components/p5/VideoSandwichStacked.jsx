@@ -1,5 +1,5 @@
+import { ArrowUp, Pause, Play } from "@phosphor-icons/react";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
   ssr: false,
@@ -8,20 +8,43 @@ const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
 export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   let enableVideo = false;
   let stackedVideo;
+  let isPaused = true;
 
   let setupBackground = (p5, parentRef) => {
+    p5.disableFriendlyErrors = true;
     p5.createCanvas(1280, 720).parent(parentRef);
 
     stackedVideo = p5.createVideo(stackedVideoPath);
     stackedVideo.volume(0);
     stackedVideo.hide();
-    stackedVideo.loop();
+    stackedVideo.pause();
+
+    p5.select("#drop-area").drop(() => {
+      enableVideo = true;
+      stackedVideo.volume(0.7);
+      stackedVideo.loop();
+    });
   };
 
   let drawBackGround = (p5) => {
     if (enableVideo) {
       p5.noStroke();
       p5.image(stackedVideo, 0, 0, 1280, 720, 0, 0, 1280, 720);
+    }
+  };
+
+  let keyPressed = (p5, event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    if (!enableVideo) return;
+    if (event.code != "Space") return;
+
+    isPaused = !isPaused;
+
+    if (isPaused) {
+      stackedVideo.pause();
+    } else {
+      stackedVideo.loop();
     }
   };
 
@@ -36,19 +59,12 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
   };
 
   let setupForeground = (p5, parentRef) => {
+    p5.disableFriendlyErrors = true;
     p5.createCanvas(1280, 720, p5.WEBGL).parent(parentRef);
 
-    stackedVideo = p5.createVideo(stackedVideoPath);
-    stackedVideo.volume(0);
-    stackedVideo.hide();
-    stackedVideo.loop();
     // load and set the shader
     p5.shader(maskShader);
     maskShader.setUniform("video", stackedVideo);
-
-    p5.select("#drop-area").drop(() => {
-      enableVideo = true;
-    });
   };
 
   let drawForeground = (p5) => {
@@ -84,11 +100,13 @@ export default function VideoSandwhichStacked({ children, stackedVideoPath }) {
         <div className="z-50 absolute pointer-events-none">
           <Sketch
             preload={preload}
+            keyPressed={keyPressed}
             setup={setupForeground}
             draw={drawForeground}
           />
         </div>
       </div>
+
       <div
         id="drop-area"
         onDragLeave={dragLeave}
