@@ -1,4 +1,3 @@
-import { ArrowUp, Pause, Play } from "@phosphor-icons/react";
 import dynamic from "next/dynamic";
 
 const Sketch = dynamic(() => import("react-p5").then((mod) => mod.default), {
