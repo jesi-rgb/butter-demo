@@ -12,12 +12,15 @@ import { useRef, useState } from "react";
 import { useThree } from "@react-three/fiber";
 import { button } from "leva";
 
+import { suspend } from "suspend-react";
+const city = import("@pmndrs/assets/hdri/city.exr");
+
 export default function TextStackEffects() {
   const selected = useSelect().map((sel) => sel.userData.store);
   const mesh = useRef(null);
 
-  let [threeD, setThreeD] = useState(false);
-  let [metal, setMetal] = useState(false);
+  let [threeD, setThreeD] = useState(true);
+  let [metal, setMetal] = useState(true);
   let [mirror, setMirror] = useState(false);
   let [motion, setMotion] = useState(false);
   let [enableBg, setEnableBg] = useState(false);
@@ -32,7 +35,7 @@ export default function TextStackEffects() {
     "Solitude Night":
       "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/2k/solitude_night_2k.hdr",
   };
-  let [background, setBackground] = useState(backgrounds["Photo Studio"]);
+  let [background, setBackground] = useState(backgrounds["Lake Pier"]);
 
   let textOptions = {
     height: 0.0,
@@ -80,7 +83,7 @@ export default function TextStackEffects() {
     }),
     Motion: button(() => setMotion((motion) => !motion)),
 
-    "Base shape": button(() => {}, { disabled: true }),
+    "Base shape": button(() => { }, { disabled: true }),
   });
 
   return (
@@ -95,7 +98,7 @@ export default function TextStackEffects() {
           }
         }}
       >
-        <Environment preset="city" />
+        <Environment files={suspend(city).default} />
         <Float speed={motion ? 3 : 0}>
           <Center>
             <Text3D
